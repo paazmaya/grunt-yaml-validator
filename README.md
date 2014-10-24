@@ -20,15 +20,23 @@ plugin with this command:
 npm install grunt-yaml-validator --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+Once the plugin has been installed, it may be enabled inside your 
+`Gruntfile.js` with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('grunt-yaml-validator');
 ```
 
+In case you are using an automated loader, such as [`jit-grunt`](https://github.com/shootaroo/jit-grunt),
+the above is not needed.
+
 ## The "yaml_validator" task
 
+Please note that this project is a [multi task plugin](http://gruntjs.com/creating-tasks#multi-tasks),
+so pay special attention for configuring it.
+
 ### Overview
+
 In your project's Gruntfile, add a section named `yaml_validator` to the data object passed into `grunt.initConfig()`.
 
 ```js
@@ -49,19 +57,19 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.structure
 
-Type: `String`
-Default value: `',  '`
+Type: `Object`
+Default value: `'{}'`
 
-A string value that is used to do something with whatever.
+An object to define the structure which the Yaml files should contain.
 
-#### options.punctuation
+#### options.yaml
 
-Type: `String`
-Default value: `'.'`
+Type: `Object`
+Default value: `null`
 
-A string value that is used to do something else with whatever else.
+Options passed to [`safeload` method of `js-yaml`](https://github.com/nodeca/js-yaml#safeload-string---options-).
 
 ### Usage Examples
 

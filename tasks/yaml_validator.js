@@ -1,8 +1,8 @@
-/*
+/**
  * grunt-yaml-validator
- * https://github.com/jukkapaasonen/grunt-yaml-validator
+ * https://github.com/paazmaya/grunt-yaml-validator
  *
- * Copyright (c) 2014 Juga Paazmaya
+ * Copyright (c) Juga Paazmaya
  * Licensed under the MIT license.
  */
 

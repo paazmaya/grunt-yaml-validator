@@ -2,7 +2,7 @@
  * grunt-yaml-validator
  * https://github.com/paazmaya/grunt-yaml-validator
  *
- * Copyright (c) Juga Paazmaya
+ * Copyright (c) Juga Paazmaya <olavic@gmail.com>
  * Licensed under the MIT license.
  */
 

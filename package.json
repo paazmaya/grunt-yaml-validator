@@ -38,7 +38,9 @@
     "grunt-contrib-clean": "~0.5",
     "grunt-contrib-jshint": "~0.9",
     "grunt-contrib-nodeunit": "~0.3",
-    "grunt-eslint": "~1.2"
+    "grunt-eslint": "~1.2",
+    "jit-grunt": "~0.9",
+    "time-grunt": "~1.0"
   },
   "peerDependencies": {
     "grunt": "~0.4"

@@ -1,26 +1,26 @@
-/*
+/**
  * grunt-yaml-validator
  * https://github.com/paazmaya/grunt-yaml-validator
  *
- * Copyright (c) Juga Paazmaya
+ * Copyright (c) Juga Paazmaya <olavic@gmail.com>
  * Licensed under the MIT license.
  */
 
 'use strict';
 
 module.exports = function(grunt) {
+  require('time-grunt')(grunt); // Must be first item
 
-  // Project configuration.
   grunt.initConfig({
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>'
-      ],
+    eslint: {
       options: {
-        jshintrc: '.jshintrc'
-      }
+        config: '.eslintrc',
+        format: 'stylish'
+      },
+      target: [
+        'Gruntfile.js',
+        'tasks/*.js'
+      ]
     },
 
     // Before generating any new files, remove any previously-created files.
@@ -55,13 +55,9 @@ module.exports = function(grunt) {
 
   });
 
-  // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  require('jit-grunt')(grunt);
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.

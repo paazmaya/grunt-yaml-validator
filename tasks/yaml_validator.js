@@ -12,6 +12,12 @@ var yaml = require('js-yaml'),
   check = require("check-type").init(),
   colors = require('colors');
 
+/**
+ * Check that the given object matches the given structure.
+ * @param {object} doc Object loaded from Yaml file
+ * @param {array} required List of required keys
+ * @returns {number} Total number of keys missing
+ */
 var checkStructure = function (doc, required) {
   var missing = 0;
   required.forEach(function (key) {

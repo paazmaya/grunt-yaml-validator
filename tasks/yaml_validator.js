@@ -8,7 +8,19 @@
 
 'use strict';
 
-var checkStructure = function () {};
+var yaml = require('js-yaml'),
+  check = require("check-type").init(),
+  colors = require('colors');
+
+var checkStructure = function (doc, required) {
+  var missing = 0;
+  required.forEach(function (key) {
+    var has = check(doc).has(key);
+    util.puts(colors[has ? 'green' : 'red'](key + ': ' + has));
+    missing += has ? 0 : 1;
+  });
+  return missing;
+};
 
 
 module.exports = function(grunt) {
@@ -29,13 +41,21 @@ module.exports = function(grunt) {
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
           return false;
-        } 
+        }
         return true;
       }).map(function(filepath) {
-        // Return the number of keys that were not according to the requirement
-        return 0;
-      });
 
+        var data = grunt.file.read(filepath);
+
+        var doc = yaml.safeLoad(data, {
+          onWarning: function (error) {
+            grunt.log.error(error);
+          }
+        });
+
+        // Return the number of keys that were not according to the requirement
+        return checkStructure(doc, this.options.structure);
+      });
 
       grunt.log.writeln('Done. Thank you. Found ' + missing);
     });

@@ -28,6 +28,11 @@
   "scripts": {
     "test": "grunt test"
   },
+  "dependencies": {
+    "check-type": "~0.4",
+    "colors": "~1.0",
+    "js-yaml": "~3.2"
+  },
   "devDependencies": {
     "grunt-contrib-jshint": "^0.9",
     "grunt-contrib-clean": "^0.5",

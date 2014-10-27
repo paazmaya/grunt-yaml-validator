@@ -1,7 +1,7 @@
 {
   "name": "grunt-yaml-validator",
   "description": "Validate Yaml files and enforce a given structure",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/paazmaya/grunt-yaml-validator",
   "author": {
     "name": "Juga Paazmaya",

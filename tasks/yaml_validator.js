@@ -9,27 +9,27 @@
 'use strict';
 
 var yaml = require('js-yaml'),
-  check = require("check-type").init(),
+  check = require('check-type').init(),
   colors = require('colors');
-
-/**
- * Check that the given object matches the given structure.
- * @param {object} doc Object loaded from Yaml file
- * @param {array} required List of required keys
- * @returns {number} Total number of keys missing
- */
-var checkStructure = function (doc, required) {
-  var missing = 0;
-  required.forEach(function (key) {
-    var has = check(doc).has(key);
-    util.puts(colors[has ? 'green' : 'red'](key + ': ' + has));
-    missing += has ? 0 : 1;
-  });
-  return missing;
-};
 
 
 module.exports = function(grunt) {
+
+  /**
+   * Check that the given object matches the given structure.
+   * @param {object} doc Object loaded from Yaml file
+   * @param {array} required List of required keys
+   * @returns {number} Total number of keys missing
+   */
+  var checkStructure = function (doc, required) {
+    var missing = 0;
+    required.forEach(function (key) {
+      var has = check(doc).has(key);
+      grunt.verbose.log(colors[has ? 'green' : 'red'](key + ': ' + has));
+      missing += has ? 0 : 1;
+    });
+    return missing;
+  };
 
   grunt.registerMultiTask('yaml_validator', 'Validate Yaml files and enforce a given structure', function() {
 
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
         });
 
         // Return the number of keys that were not according to the requirement
-        return checkStructure(doc, this.options.structure);
+        return checkStructure(doc, options.structure);
       });
 
       grunt.log.writeln('Done. Thank you. Found ' + missing);

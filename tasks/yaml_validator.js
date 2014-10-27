@@ -9,9 +9,7 @@
 'use strict';
 
 var yaml = require('js-yaml'),
-  check = require('check-type').init(),
-  colors = require('colors');
-
+  check = require('check-type').init();
 
 module.exports = function(grunt) {
   var options,

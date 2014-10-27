@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "check-type": "~0.4",
-    "colors": "~1.0",
     "js-yaml": "~3.2"
   },
   "devDependencies": {
@@ -44,6 +43,10 @@
     "grunt": "~0.4"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "yaml",
+    "tree",
+    "validate",
+    "structure"
   ]
 }

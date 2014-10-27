@@ -14,7 +14,18 @@ var yaml = require('js-yaml'),
 
 
 module.exports = function(grunt) {
-  var options;
+  var options,
+    logs = [];
+
+  /**
+   * Wrapper to call Grunt API and store message for
+   * possible later use by writing a log file.
+   * @param {string} msg Error message
+   */
+  var errored = function (msg) {
+    logs.push(msg);
+    grunt.log.error(msg);
+  };
 
   /**
    * Check that the given object matches the given structure.
@@ -45,7 +56,7 @@ module.exports = function(grunt) {
 
     var doc = yaml.safeLoad(data, {
       onWarning: function (error) {
-        grunt.log.error(error);
+        errored(error);
         if (typeof options.yaml === 'object' && typeof options.yaml.onWarning === 'function') {
           options.yaml.onWarning.call(this, error, filepath);
         }
@@ -56,8 +67,8 @@ module.exports = function(grunt) {
     var len = missing.length;
 
     if (len > 0) {
-      grunt.log.error(filepath + ' is missing the following keys: ');
-      grunt.log.error(grunt.log.wordlist(missing, {color: 'grey'}));
+      errored(filepath + ' is missing the following keys: ');
+      errored(grunt.log.wordlist(missing, {color: 'grey'}));
     }
 
     // Return the number of keys that were not according to the requirement
@@ -68,13 +79,16 @@ module.exports = function(grunt) {
 
     // Default options
     options = this.options({
+      log: false,
       structure: [],
       yaml: null
     });
 
     var missing = this.filesSrc.filter(function(filepath) {
       if (!grunt.file.exists(filepath)) {
-        grunt.log.warn('Source file "' + filepath + '" not found.');
+        var msg = 'Source file "' + filepath + '" not found.';
+        logs.push(msg);
+        grunt.log.warn(msg);
         return false;
       }
       return true;
@@ -86,10 +100,16 @@ module.exports = function(grunt) {
     });
 
     if (total === 0) {
-      grunt.verbose.writeln('All done. No missing keys found. Thank you.');
+      var msg = 'All done. No missing keys found. Thank you.';
+      logs.push(msg);
+      grunt.verbose.writeln(msg);
     }
     else {
-      grunt.log.error('Found total of ' + total + ' missing keys');
+      errored('Found total of ' + total + ' missing keys');
+    }
+
+    if (typeof options.log === 'string') {
+      grunt.file.write(options.log, grunt.log.uncolor(logs.join('\n')));
     }
   });
 

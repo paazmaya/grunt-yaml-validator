@@ -62,6 +62,17 @@ grunt.initConfig({
 
 ### Options
 
+#### options.log
+
+Type: `string|boolean`
+Default value: `'false'`
+
+In case the value is not `false`, the given string will be used as log file where all the
+task output is written.
+
+Please note that running Grunt with `-v` (verbose) mode does make a difference in the
+resulting output.
+
 #### options.structure
 
 Type: `Array`
@@ -81,6 +92,7 @@ will be run after the one implemented in this plugin.
 The callback get called with two parameters, of which the first is the error in question,
 while the second is the file path of the given Yaml file.
 
+
 ### Usage Examples
 
 #### Default Options
@@ -92,6 +104,7 @@ grunt.initConfig({
   yaml_validator: {
     defaults: {
       options: {
+        log: false,
         structure: [],
         yaml: null
       },
@@ -101,20 +114,16 @@ grunt.initConfig({
 });
 ```
 
-#### Warning callback in Yaml parsing options
+#### Logging options
 
-Using the `onWarning` callback, the possible parsing errors can be retrieved.
+All output is written in the log file as well as to the standard output.
 
 ```js
 grunt.initConfig({
   yaml_validator: {
     custom: {
       options: {
-        yaml: {
-          onWarning: function (error, filepath) {
-            console.log(filepath + ' has error: ' + error);
-          }
-        }
+        log: 'yaml-validator.log'
       },
       src: ['configuration/*.yml', 'other/important/*_stuff.yml']
     }
@@ -145,6 +154,27 @@ grunt.initConfig({
 });
 ```
 
+#### Warning callback in Yaml parsing options
+
+Using the `onWarning` callback, the possible parsing errors can be retrieved.
+
+```js
+grunt.initConfig({
+  yaml_validator: {
+    custom: {
+      options: {
+        yaml: {
+          onWarning: function (error, filepath) {
+            console.log(filepath + ' has error: ' + error);
+          }
+        }
+      },
+      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
+    }
+  }
+});
+```
+
 ## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
@@ -157,6 +187,7 @@ Please note that any features or changed will not be merged without working unit
 
 * v0.1.0 (2014-10-27) Initial release to the World
 * v0.1.1 (2014-10-27) Fix structure type and update documentation
+* v0.2.0 (2014-10-27) Log file option
 
 ## License
 

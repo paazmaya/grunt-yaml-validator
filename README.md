@@ -35,7 +35,8 @@ the above line is not needed.
 Please note that this project is a [multi task plugin](http://gruntjs.com/creating-tasks#multi-tasks),
 so pay special attention for configuring it.
 
-Files to be checked with this plugin, should be defined [via `src` property](http://gruntjs.com/api/inside-tasks#this.filessrc).
+Files to be checked with this plugin, should be defined
+[via `src` property](http://gruntjs.com/api/inside-tasks#this.filessrc).
 
 ### Overview
 
@@ -63,10 +64,10 @@ grunt.initConfig({
 
 #### options.structure
 
-Type: `Object`
-Default value: `'{}'`
+Type: `Array`
+Default value: `'[]'`
 
-An object to define the structure which the Yaml files should contain.
+An array to list the property structure which the Yaml files should contain.
 
 #### options.yaml
 
@@ -91,27 +92,52 @@ grunt.initConfig({
   yaml_validator: {
     defaults: {
       options: {
-        structure: {},
+        structure: [],
         yaml: null
       },
-      src: ['configuration/*.yml']
+      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
     }
   }
 });
 ```
 
-#### Custom Options
+#### Warning callback in Yaml parsing options
 
-In this example, custom options are used to do something else with whatever else.
-So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+Using the `onWarning` callback, the possible parsing errors can be retrieved.
 
 ```js
 grunt.initConfig({
   yaml_validator: {
     custom: {
       options: {
-        structure: {},
-        yaml: null
+        yaml: {
+          onWarning: function (error, filepath) {
+            console.log(filepath + ' has error: ' + error);
+          }
+        }
+      },
+      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
+    }
+  }
+});
+```
+
+#### Structure definition options
+
+The given structure validation requirements are passed to the `has()` method of the
+[`check-type`](https://github.com/alistairjcbrown/check-type) plugin.
+
+```js
+grunt.initConfig({
+  yaml_validator: {
+    custom: {
+      options: {
+        structure: [
+         'school',
+         'school.description',
+         'school.title',
+         'school.language'
+        ]
       },
       src: ['configuration/*.yml', 'other/important/*_stuff.yml']
     }

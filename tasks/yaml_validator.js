@@ -68,7 +68,7 @@ module.exports = function(grunt) {
 
     // Default options
     options = this.options({
-      structure: {},
+      structure: [],
       yaml: null
     });
 

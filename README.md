@@ -8,7 +8,7 @@ and the structure defined via task configuration is enforced with
 
 ## Getting Started
 
-This plugin requires Grunt `~0.4` and registers itself as a multi task plugin.
+This plugin requires Grunt `~0.4` and Node.js `0.10.0`.
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
 [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
@@ -28,7 +28,7 @@ grunt.loadNpmTasks('grunt-yaml-validator');
 ```
 
 In case you are using an automated loader, such as [`jit-grunt`](https://github.com/shootaroo/jit-grunt),
-the above is not needed.
+the above line is not needed.
 
 ## The "yaml_validator" task
 
@@ -84,7 +84,7 @@ while the second is the file path of the given Yaml file.
 
 #### Default Options
 
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+By using the default option values, only the validity of the configured Yaml files are checked.
 
 ```js
 grunt.initConfig({
@@ -94,7 +94,7 @@ grunt.initConfig({
         structure: {},
         yaml: null
       },
-      src: ['src/testing', 'src/123']
+      src: ['configuration/*.yml']
     }
   }
 });
@@ -102,16 +102,19 @@ grunt.initConfig({
 
 #### Custom Options
 
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, custom options are used to do something else with whatever else.
+So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
 
 ```js
 grunt.initConfig({
   yaml_validator: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!'
-    },
-    src: ['src/testing', 'src/123']
+    custom: {
+      options: {
+        structure: {},
+        yaml: null
+      },
+      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
+    }
   }
 });
 ```
@@ -120,11 +123,13 @@ grunt.initConfig({
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 Add unit tests for any new or changed functionality.
-Lint with [ESLint](http://eslint.org) and test your code using [Grunt](http://gruntjs.com/).
+Lint with [ESLint](http://eslint.org) and test your code using unit tests.
+
+Please note that any features or changed will not be merged without working unit tests.
 
 ## Release History
 
-_(Nothing yet)_
+v0.1.0    2014-10-27    Initial release to the World
 
 ## License
 

@@ -2,6 +2,8 @@
 
 > Validate Yaml files and enforce a given structure
 
+[![Dependency Status](https://david-dm.org/paazmaya/grunt-yaml-validator.svg)](https://david-dm.org/paazmaya/grunt-yaml-validator)
+
 [Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)
 and the structure defined via task configuration is enforced with
 [`check-type`](https://github.com/alistairjcbrown/check-type).

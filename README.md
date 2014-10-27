@@ -2,7 +2,7 @@
 
 > Validate Yaml files and enforce a given structure
 
-[Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml) 
+[Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)
 and the structure defined via task configuration is enforced with
 [`check-type`](https://github.com/alistairjcbrown/check-type).
 
@@ -10,17 +10,17 @@ and the structure defined via task configuration is enforced with
 
 This plugin requires Grunt `~0.4` and registers itself as a multi task plugin.
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the 
-[Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to 
-create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and 
-use Grunt plugins. Once you're familiar with that process, you may install this 
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
+[Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
+create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and
+use Grunt plugins. Once you're familiar with that process, you may install this
 plugin with this command:
 
 ```sh
 npm install grunt-yaml-validator --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your 
+Once the plugin has been installed, it may be enabled inside your
 `Gruntfile.js` with this line of JavaScript:
 
 ```js
@@ -35,9 +35,12 @@ the above is not needed.
 Please note that this project is a [multi task plugin](http://gruntjs.com/creating-tasks#multi-tasks),
 so pay special attention for configuring it.
 
+Files to be checked with this plugin, should be defined [via `src` property](http://gruntjs.com/api/inside-tasks#this.filessrc).
+
 ### Overview
 
-In your project's Gruntfile, add a section named `yaml_validator` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `yaml_validator` to the data object passed
+into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
@@ -50,6 +53,7 @@ grunt.initConfig({
         // Multi task specific options go here.
       }
       // Target-specific file lists and/or options go here.
+      src: []
     },
   },
 });
@@ -71,6 +75,11 @@ Default value: `null`
 
 Options passed to [`safeload` method of `js-yaml`](https://github.com/nodeca/js-yaml#safeload-string---options-).
 
+Please note that the `onWarning` callback is being used by this plugin and any method written for it,
+will be run after the one implemented in this plugin.
+The callback get called with two parameters, of which the first is the error in question,
+while the second is the file path of the given Yaml file.
+
 ### Usage Examples
 
 #### Default Options
@@ -80,11 +89,14 @@ In this example, the default options are used to do something with whatever. So 
 ```js
 grunt.initConfig({
   yaml_validator: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+    defaults: {
+      options: {
+        structure: {},
+        yaml: null
+      },
+      src: ['src/testing', 'src/123']
+    }
+  }
 });
 ```
 
@@ -97,19 +109,17 @@ grunt.initConfig({
   yaml_validator: {
     options: {
       separator: ': ',
-      punctuation: ' !!!',
+      punctuation: ' !!!'
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+    src: ['src/testing', 'src/123']
+  }
 });
 ```
 
 ## Contributing
 
-In lieu of a formal styleguide, take care to maintain the existing coding style. 
-Add unit tests for any new or changed functionality. 
+In lieu of a formal styleguide, take care to maintain the existing coding style.
+Add unit tests for any new or changed functionality.
 Lint with [ESLint](http://eslint.org) and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History

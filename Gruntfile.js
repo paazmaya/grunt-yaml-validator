@@ -23,11 +23,6 @@ module.exports = function(grunt) {
       ]
     },
 
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp']
-    },
-
     // Configuration to be run (and then tested).
     yaml_validator: {
       default_options: {
@@ -61,9 +56,9 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'yaml_validator', 'nodeunit']);
+  grunt.registerTask('test', ['yaml_validator', 'nodeunit']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  grunt.registerTask('default', ['eslint', 'test']);
 
 };

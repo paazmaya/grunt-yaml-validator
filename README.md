@@ -155,8 +155,8 @@ Please note that any features or changed will not be merged without working unit
 
 ## Release History
 
-v0.1.0    2014-10-27    Initial release to the World
-v0.1.1    2014-10-27    Fix structure type and update documentation
+* v0.1.0 (2014-10-27) Initial release to the World
+* v0.1.1 (2014-10-27) Fix structure type and update documentation
 
 ## License
 

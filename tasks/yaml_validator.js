@@ -103,7 +103,7 @@ module.exports = function(grunt) {
       grunt.verbose.writeln(msg);
     }
     else {
-      errored('Found total of ' + total + ' missing keys');
+      errored('Found missing keys, total of: ' + total);
     }
 
     if (typeof options.log === 'string') {

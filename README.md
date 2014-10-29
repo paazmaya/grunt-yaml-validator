@@ -67,6 +67,7 @@ grunt.initConfig({
 #### options.log
 
 Type: `string|boolean`
+
 Default value: `'false'`
 
 In case the value is not `false`, the given string will be used as log file where all the
@@ -78,6 +79,7 @@ resulting output.
 #### options.structure
 
 Type: `Array`
+
 Default value: `'[]'`
 
 An array to list the property structure which the Yaml files should contain.
@@ -85,6 +87,7 @@ An array to list the property structure which the Yaml files should contain.
 #### options.yaml
 
 Type: `Object`
+
 Default value: `null`
 
 Options passed to [`safeload` method of `js-yaml`](https://github.com/nodeca/js-yaml#safeload-string---options-).
@@ -195,4 +198,4 @@ Please note that any features or changed will not be merged without working unit
 
 ## License
 
-Copyright (c) Juga Paazmaya, under [the MIT license](LICENSE-MIT)
+Copyright (c) Juga Paazmaya, licensed under [the MIT license](LICENSE-MIT)

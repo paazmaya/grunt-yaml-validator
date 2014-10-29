@@ -22,24 +22,52 @@ module.exports = function(grunt) {
         'tasks/*.js'
       ]
     },
+    
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+          captureFile: 'results.txt',
+          quiet: false,
+          
+          // Require blanket wrapper here to instrument other required
+          // files on the fly. 
+          //
+          // NB. We cannot require blanket directly as it
+          // detects that we are not running mocha cli and loads differently.
+          //
+          // NNB. As mocha is 'clever' enough to only run the tests once for
+          // each file the following coverage task does not actually run any
+          // tests which is why the coverage instrumentation has to be done here
+          require: 'test/blanket'
+        },
+        src: ['test/*_spec.js']
+      },
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          // use the quiet flag to suppress the mocha console output
+          quiet: true,
+          // specify a destination file to capture the mocha
+          // output (the quiet option does not suppress this)
+          captureFile: 'coverage.html'
+        },
+        src: ['test/*_spec.js']
+      }
+    }
 
     yaml_validator: {
       defaults: {
-        src: ['fixtures/defaults.yml']
+        src: ['test/fixtures/defaults.yml']
       },
 
       logged: {
         options: {
-          log: 'yaml-validator.log'
+          log: 'tmp/yaml-validator.log'
         },
-        src: ['fixtures/logged.yml']
+        src: ['test/fixtures/logged.yml']
       }
 
-    },
-
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js']
     }
 
   });
@@ -48,11 +76,6 @@ module.exports = function(grunt) {
 
   require('jit-grunt')(grunt);
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['yaml_validator', 'nodeunit']);
-
-  // By default, lint and run all tests.
+  grunt.registerTask('test', ['yaml_validator', 'mochaTest']);
   grunt.registerTask('default', ['eslint', 'test']);
-
 };

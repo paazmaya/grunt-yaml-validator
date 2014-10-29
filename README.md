@@ -76,9 +76,9 @@ task output is written.
 Please note that running Grunt with `-v` (verbose) mode does make a difference in the
 resulting output.
 
-#### options.structure
+#### options.keys
 
-Type: `Array`
+Type: `string|array`
 
 Default value: `'[]'`
 
@@ -110,7 +110,7 @@ grunt.initConfig({
     defaults: {
       options: {
         log: false,
-        structure: [],
+        keys: [],
         yaml: null
       },
       src: ['configuration/*.yml', 'other/important/*_stuff.yml']
@@ -138,7 +138,11 @@ grunt.initConfig({
 
 #### Structure definition options
 
-The given structure validation requirements are passed to the `has()` method of the
+Required keys are defined as strings, either a single one, or an array of them.
+
+In case the `key` is given as a string, it is considered to be a
+property path defined in dot notation, and is passed directly to the
+`has()` method of the
 [`check-type`](https://github.com/alistairjcbrown/check-type) plugin.
 
 ```js
@@ -146,11 +150,27 @@ grunt.initConfig({
   yaml_validator: {
     custom: {
       options: {
-        structure: [
-         'school',
-         'school.description',
-         'school.title',
-         'school.language'
+        keys: 'school.language'
+      },
+      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
+    }
+  }
+});
+```
+
+When the given structure is defined as an array of strings,
+it is validated through the `has()` method.
+
+```js
+grunt.initConfig({
+  yaml_validator: {
+    custom: {
+      options: {
+        keys: [
+          'school',
+          'school.description',
+          'school.title',
+          'school.language'
         ]
       },
       src: ['configuration/*.yml', 'other/important/*_stuff.yml']
@@ -195,6 +215,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.2.0 (2014-10-27) Log file option
 * v0.2.1 (2014-10-27) Remove unused dependency
 * v0.2.2 (2014-10-28) Log total number as last in the output string
+* v0.3.0 (2014-10-29) Extended `keys` configuration option which was renamed from `structure`
 
 ## License
 

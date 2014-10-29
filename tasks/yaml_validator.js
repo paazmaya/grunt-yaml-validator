@@ -26,19 +26,24 @@ module.exports = function(grunt) {
   };
 
   /**
-   * Check that the given object matches the given structure.
+   * Check that the given object matches the given key structure.
    * @param {Object} doc Object loaded from Yaml file
-   * @param {Array} required List of required keys
+   * @param {string|Array|object} keys List of required keys
    * @returns {Array} List of missing keys
    */
-  var checkStructure = function checkStructure(doc, required) {
+  var checkKeys = function checkKeys(doc, keys) {
     var missing = [];
-    required.forEach(function (key) {
+
+    if (typeof keys === 'string') {
+      keys = [keys];
+    }
+    keys.forEach(function (key) {
       var has = check(doc).has(key);
       if (!has) {
         missing.push(key);
       }
     });
+
     return missing;
   };
 
@@ -61,7 +66,7 @@ module.exports = function(grunt) {
       }
     });
 
-    var missing = checkStructure(doc, options.structure);
+    var missing = checkKeys(doc, options.keys);
     var len = missing.length;
 
     if (len > 0) {
@@ -78,7 +83,7 @@ module.exports = function(grunt) {
     // Default options
     options = this.options({
       log: false,
-      structure: [],
+      keys: [],
       yaml: null
     });
 

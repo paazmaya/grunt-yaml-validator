@@ -13,7 +13,9 @@ var yaml = require('js-yaml'),
 
 module.exports = function(grunt) {
   var options,
-    logs = [];
+    logs = [],
+    mismatchedTypes = [], // list of filepaths
+    missingKeys = 0;
 
   /**
    * Wrapper to call Grunt API and store message for
@@ -28,7 +30,7 @@ module.exports = function(grunt) {
   /**
    * Check that the given object matches the given key structure.
    * @param {Object} doc Object loaded from Yaml file
-   * @param {string|Array|object} keys List of required keys
+   * @param {string|Array} keys List of required keys
    * @returns {Array} List of missing keys
    */
   var checkKeys = function checkKeys(doc, keys) {
@@ -48,9 +50,18 @@ module.exports = function(grunt) {
   };
 
   /**
+   *
+   * @param {Object} doc Object loaded from Yaml file
+   * @param types
+   */
+  var checkTypes = function checkTypes(doc, types) {
+    return check(doc).matches(types);
+  };
+
+  /**
    * Read the given Yaml file, load and check its structure.
    * @param {string} filepath Yaml file path
-   * @returns {number} Total number of missing keys for the given file
+   * @returns {void}
    */
   var checkFile = function checkFile(filepath) {
 
@@ -60,34 +71,47 @@ module.exports = function(grunt) {
     var doc = yaml.safeLoad(data, {
       onWarning: function (error) {
         errored(error);
-        if (typeof options.yaml === 'object' && typeof options.yaml.onWarning === 'function') {
+        if (options.yaml !== null &&
+          typeof options.yaml.onWarning === 'function') {
           options.yaml.onWarning.call(this, error, filepath);
         }
       }
     });
 
-    var missing = checkKeys(doc, options.keys);
-    var len = missing.length;
+    if (options.keys !== null) {
+      var missing = checkKeys(doc, options.keys);
+      var len = missing.length;
 
-    if (len > 0) {
-      errored(filepath + ' is missing the following keys: ');
-      errored(grunt.log.wordlist(missing, {color: 'grey'}));
+      if (len > 0) {
+        errored(filepath + ' is missing the following keys: ');
+        errored(grunt.log.wordlist(missing, {color: 'grey'}));
+      }
+
+      // Increment the number of keys that were not according to the requirement
+      missingKeys += len;
     }
 
-    // Return the number of keys that were not according to the requirement
-    return len;
+    if (options.types !== null) {
+      var mismatching = checkTypes(doc, options.types);
+      if (!mismatching) {
+        errored(filepath + ' is not matching the type requirements');
+        mismatchedTypes.push(filepath);
+      }
+    }
   };
 
   grunt.registerMultiTask('yaml_validator', 'Validate Yaml files and enforce a given structure', function() {
+    var msg;
 
     // Default options
     options = this.options({
       log: false,
       keys: [],
+      types: null,
       yaml: null
     });
 
-    var missing = this.filesSrc.filter(function(filepath) {
+    var files = this.filesSrc.filter(function(filepath) {
       if (!grunt.file.exists(filepath)) {
         var msg = 'Source file "' + filepath + '" not found.';
         logs.push(msg);
@@ -95,20 +119,26 @@ module.exports = function(grunt) {
         return false;
       }
       return true;
-
-    }).map(checkFile);
-
-    var total = missing.reduce(function (prev, curr) {
-      return prev + curr;
     });
 
-    if (total === 0) {
-      var msg = 'All done. No missing keys found. Thank you.';
+    files.map(checkFile);
+
+    if (mismatchedTypes.length > 0) {
+      errored('Type mismatching found in total of ' + mismatchedTypes.length + ' files');
+    }
+    else {
+      msg = 'No mismatching type requirements found.';
+      logs.push(msg);
+      grunt.verbose.writeln(msg);
+    }
+
+    if (missingKeys === 0) {
+      msg = 'All done. No missing keys found. Thank you.';
       logs.push(msg);
       grunt.verbose.writeln(msg);
     }
     else {
-      errored('Found missing keys, total of: ' + total);
+      errored('Found missing keys, total of: ' + missingKeys);
     }
 
     if (typeof options.log === 'string') {

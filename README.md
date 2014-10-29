@@ -68,7 +68,7 @@ grunt.initConfig({
 
 Type: `string|boolean`
 
-Default value: `'false'`
+Default value: `false`
 
 In case the value is not `false`, the given string will be used as log file where all the
 task output is written.
@@ -80,7 +80,7 @@ resulting output.
 
 Type: `string|array`
 
-Default value: `'[]'`
+Default value: `[]`
 
 An array to list the property structure which the Yaml files should contain.
 
@@ -96,6 +96,14 @@ Please note that the `onWarning` callback is being used by this plugin and any m
 will be run after the one implemented in this plugin.
 The callback get called with two parameters, of which the first is the error in question,
 while the second is the file path of the given Yaml file.
+
+#### options.types
+
+Type: `object`
+
+Default: `'null'`
+
+The given object, when not null, is passed directly to [the `matches()` method](https://github.com/alistairjcbrown/check-type#example-checking-object-properties-using-matches).
 
 
 ### Usage Examples
@@ -126,7 +134,7 @@ All output is written in the log file as well as to the standard output.
 ```js
 grunt.initConfig({
   yaml_validator: {
-    custom: {
+    logged: {
       options: {
         log: 'yaml-validator.log'
       },
@@ -136,7 +144,7 @@ grunt.initConfig({
 });
 ```
 
-#### Structure definition options
+#### Key structure option
 
 Required keys are defined as strings, either a single one, or an array of them.
 
@@ -172,6 +180,30 @@ grunt.initConfig({
           'school.title',
           'school.language'
         ]
+      },
+      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
+    }
+  }
+});
+```
+
+#### Type definition option
+
+When the `types` configuration options is used, each property key is checked
+with the `has()` method as done in the earlier examples, and also the resulting value
+is evaluated for the given type.
+
+```js
+grunt.initConfig({
+  yaml_validator: {
+    custom: {
+      options: {
+        types: {
+          'school.description': 'string',
+          'school.code': 'number',
+          'school.principal': 'object',
+          'school.principal.name': 'string'
+        }
       },
       src: ['configuration/*.yml', 'other/important/*_stuff.yml']
     }
@@ -216,6 +248,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.2.1 (2014-10-27) Remove unused dependency
 * v0.2.2 (2014-10-28) Log total number as last in the output string
 * v0.3.0 (2014-10-29) Extended `keys` configuration option which was renamed from `structure`
+* v0.4.0 (2014-10-) Added type checking configuration option
 
 ## License
 

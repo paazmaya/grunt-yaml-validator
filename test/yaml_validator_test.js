@@ -1,3 +1,11 @@
+/**
+ * grunt-yaml-validator
+ * https://github.com/paazmaya/grunt-yaml-validator
+ *
+ * Copyright (c) Juga Paazmaya <olavic@gmail.com>
+ * Licensed under the MIT license.
+ */
+
 'use strict';
 
 var grunt = require('grunt');
@@ -27,7 +35,8 @@ exports.yaml_validator = {
     // setup here if necessary
     done();
   },
-  default_options: function(test) {
+
+  defaults_options: function(test) {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/default_options');
@@ -36,7 +45,8 @@ exports.yaml_validator = {
 
     test.done();
   },
-  custom_options: function(test) {
+
+  logged_options: function(test) {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/custom_options');
@@ -45,4 +55,5 @@ exports.yaml_validator = {
 
     test.done();
   },
+
 };

@@ -23,24 +23,18 @@ module.exports = function(grunt) {
       ]
     },
 
-    // Configuration to be run (and then tested).
     yaml_validator: {
-      default_options: {
-        options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+      defaults: {
+        src: ['fixtures/defaults.yml']
       },
-      custom_options: {
+
+      logged: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!'
+          log: 'yaml-validator.log'
         },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+        src: ['fixtures/logged.yml']
       }
+
     },
 
     // Unit tests.

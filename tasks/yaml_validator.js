@@ -61,15 +61,17 @@ module.exports = function(grunt) {
   /**
    * Read the given Yaml file, load and check its structure.
    * @param {string} filepath Yaml file path
-   * @returns {void}
+   * @returns {number} 0 when no errors, 1 when errors.
    */
   var checkFile = function checkFile(filepath) {
 
     // Verbose output will tell which file is being read
-    var data = grunt.file.read(filepath);
+    var data = grunt.file.read(filepath),
+      hadError = 0;
 
     var doc = yaml.safeLoad(data, {
       onWarning: function (error) {
+        hadError = 1;
         errored(error);
         if (options.yaml !== null &&
           typeof options.yaml.onWarning === 'function') {
@@ -83,6 +85,7 @@ module.exports = function(grunt) {
       var len = missing.length;
 
       if (len > 0) {
+        hadError = 1;
         errored(filepath + ' is missing the following keys: ');
         errored(grunt.log.wordlist(missing, {color: 'grey'}));
       }
@@ -94,10 +97,13 @@ module.exports = function(grunt) {
     if (options.types !== null) {
       var mismatching = checkTypes(doc, options.types);
       if (!mismatching) {
+        hadError = 1;
         errored(filepath + ' is not matching the type requirements');
         mismatchedTypes.push(filepath);
       }
     }
+
+    return hadError;
   };
 
   grunt.registerMultiTask('yaml_validator', 'Validate Yaml files and enforce a given structure', function() {
@@ -121,7 +127,11 @@ module.exports = function(grunt) {
       return true;
     });
 
-    files.map(checkFile);
+    var haveErrors = files.map(checkFile).reduce(function (prev, curr) {
+      return prev + curr;
+    });
+
+    grunt.verbose.writeln('Out of ' + files.length + ' files, ' + haveErrors + ' have validation errors');
 
     if (mismatchedTypes.length > 0) {
       errored('Type mismatching found in total of ' + mismatchedTypes.length + ' files');

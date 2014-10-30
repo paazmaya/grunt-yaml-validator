@@ -22,16 +22,16 @@ module.exports = function(grunt) {
         'tasks/*.js'
       ]
     },
-    
+
     mochaTest: {
       test: {
         options: {
           reporter: 'spec',
           captureFile: 'results.txt',
           quiet: false,
-          
+
           // Require blanket wrapper here to instrument other required
-          // files on the fly. 
+          // files on the fly.
           //
           // NB. We cannot require blanket directly as it
           // detects that we are not running mocha cli and loads differently.
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
         },
         src: ['test/*_spec.js']
       }
-    }
+    },
 
     yaml_validator: {
       defaults: {

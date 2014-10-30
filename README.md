@@ -189,9 +189,8 @@ grunt.initConfig({
 
 #### Type definition option
 
-When the `types` configuration options is used, each property key is checked
-with the `has()` method as done in the earlier examples, and also the resulting value
-is evaluated for the given type.
+When the `types` configuration options is used, it is passed directly to the
+`matches()` of the `check-type` plugin.
 
 ```js
 grunt.initConfig({
@@ -248,7 +247,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.2.1 (2014-10-27) Remove unused dependency
 * v0.2.2 (2014-10-28) Log total number as last in the output string
 * v0.3.0 (2014-10-29) Extended `keys` configuration option which was renamed from `structure`
-* v0.4.0 (2014-10-) Added type checking configuration option
+* v0.4.0 (2014-10-30) Added type checking configuration option
 
 ## License
 

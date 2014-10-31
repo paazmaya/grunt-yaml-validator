@@ -245,7 +245,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.2.2 (2014-10-28) Log total number as last in the output string
 * v0.3.0 (2014-10-29) Extended `keys` configuration option which was renamed from `structure`
 * v0.4.0 (2014-10-30) Added type checking configuration option
-* v0.5.0 (2014-10-31) Default option values unified to be false
+* v0.5.0 (2014-10-31) Default option values unified to be false. Multitasking fixed.
 
 ## License
 

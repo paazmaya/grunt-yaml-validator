@@ -64,9 +64,11 @@ grunt.initConfig({
 
 ### Options
 
+All options are `false` by default which disables their use.
+
 #### options.log
 
-Type: `string|boolean`
+Type: `string`
 
 Default value: `false`
 
@@ -80,15 +82,15 @@ resulting output.
 
 Type: `string|array`
 
-Default value: `[]`
+Default value: `false`
 
 An array to list the property structure which the Yaml files should contain.
 
 #### options.yaml
 
-Type: `Object`
+Type: `object`
 
-Default value: `null`
+Default value: `false`
 
 Options passed to [`safeload` method of `js-yaml`](https://github.com/nodeca/js-yaml#safeload-string---options-).
 
@@ -101,7 +103,7 @@ while the second is the file path of the given Yaml file.
 
 Type: `object`
 
-Default: `'null'`
+Default: `false`
 
 The given object, when not null, is passed directly to [the `matches()` method](https://github.com/alistairjcbrown/check-type#example-checking-object-properties-using-matches).
 
@@ -116,11 +118,6 @@ By using the default option values, only the validity of the configured Yaml fil
 grunt.initConfig({
   yaml_validator: {
     defaults: {
-      options: {
-        log: false,
-        keys: [],
-        yaml: null
-      },
       src: ['configuration/*.yml', 'other/important/*_stuff.yml']
     }
   }
@@ -248,6 +245,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.2.2 (2014-10-28) Log total number as last in the output string
 * v0.3.0 (2014-10-29) Extended `keys` configuration option which was renamed from `structure`
 * v0.4.0 (2014-10-30) Added type checking configuration option
+* v0.5.0 (2014-10-31) Default option values unified to be false
 
 ## License
 

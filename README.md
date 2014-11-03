@@ -108,6 +108,16 @@ Default: `false`
 The given object, when not null, is passed directly to [the `matches()` method](https://github.com/alistairjcbrown/check-type#example-checking-object-properties-using-matches).
 
 
+#### options.writeJson
+
+Type: `boolean`
+
+Default: `false`
+
+Write the given Yaml file as pretty printed JSON in the same path, just by changing the file extension to `json`.
+
+Please note that any existing JSON files will be cruelly overwritten.
+
 ### Usage Examples
 
 #### Default Options
@@ -228,6 +238,24 @@ grunt.initConfig({
 });
 ```
 
+#### Write a JSON file option
+
+It is possible to use the `options.writeJson` to have all the files processed,
+to be saved in JSON format, in the same file path as the original Yaml files.
+
+```js
+grunt.initConfig({
+  yaml_validator: {
+    custom: {
+      options: {
+        writeJson: true
+      },
+      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
+    }
+  }
+});
+```
+
 ## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
@@ -246,6 +274,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.3.0 (2014-10-29) Extended `keys` configuration option which was renamed from `structure`
 * v0.4.0 (2014-10-30) Added type checking configuration option
 * v0.5.0 (2014-10-31) Default option values unified to be false. Multitasking fixed.
+* v0.5.1 (2014-11-03) New option to save Yaml files as pretty printed JSON files
 
 ## License
 

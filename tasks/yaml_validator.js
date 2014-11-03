@@ -73,18 +73,24 @@ YamlValidatore.prototype.checkFile = function checkFile(filepath) {
 
   // Verbose output will tell which file is being read
   var data = grunt.file.read(filepath),
-    hadError = 0;
+    hadError = 0,
+    _self = this;
 
   var doc = yaml.safeLoad(data, {
     onWarning: function (error) {
       hadError = 1;
-      this.errored(error);
-      if (this.options.yaml &&
-        typeof this.options.yaml.onWarning === 'function') {
-        this.options.yaml.onWarning.call(this, error, filepath);
+      _self.errored(error);
+      if (_self.options.yaml &&
+        typeof _self.options.yaml.onWarning === 'function') {
+        _self.options.yaml.onWarning.call(this, error, filepath);
       }
     }
   });
+
+  if (this.options.writeJson) {
+    var json = JSON.stringify(doc, null, '  ');
+    grunt.file.write(filepath.replace(/yml$/, 'json'), json);
+  }
 
   if (this.options.keys) {
     var missing = this.checkKeys(doc, this.options.keys);
@@ -166,7 +172,8 @@ module.exports = function yamlValidator(grunt) {
       log: false,
       keys: false,
       types: false,
-      yaml: false
+      yaml: false,
+      writeJson: false
     });
 
     var files = this.filesSrc.filter(function(filepath) {

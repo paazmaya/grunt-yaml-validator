@@ -243,6 +243,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.5.2 (2014-11-03) Tag mismatch in earlier version
 * v0.6.0 (2014-11-03) New option `structure` to replace `types` and `keys`
 * v0.7.0 (2014-11-03) Removed deprecated options `types` and `keys` and report rewording
+* v0.7.1 (2014-11-03) Object properties in array are correctly matched
 
 ## License
 

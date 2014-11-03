@@ -32,7 +32,7 @@
     "node": ">= 0.10.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt eslint"
   },
   "dependencies": {
     "check-type": "~0.4",

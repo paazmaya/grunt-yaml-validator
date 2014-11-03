@@ -8,8 +8,9 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function gruntLoad(grunt) {
   require('time-grunt')(grunt); // Must be first item
+  require('jit-grunt')(grunt);
 
   grunt.initConfig({
     eslint: {
@@ -73,8 +74,6 @@ module.exports = function(grunt) {
   });
 
   grunt.loadTasks('tasks');
-
-  require('jit-grunt')(grunt);
 
   grunt.registerTask('test', ['yaml_validator', 'mochaTest']);
   grunt.registerTask('default', ['eslint', 'test']);

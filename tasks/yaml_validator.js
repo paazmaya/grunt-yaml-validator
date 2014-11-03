@@ -9,14 +9,14 @@
 'use strict';
 
 var yaml = require('js-yaml'),
-  check = require('check-type').init(),
-  grunt = require('grunt');
+  check = require('check-type').init();
 
-var YamlValidatore = function(options) {
+var YamlValidatore = function YamlValidatore(options, grunt) {
   this.options = options;
   this.logs = [];
-  this.nonValidPaths = [];
-  this.inValidFiles = []; // list of filepaths
+  this.nonValidPaths = []; // list of property paths
+  this.inValidFilesCount = 0;
+  this.grunt = grunt; // need to have reference on the original instance
 };
 
 
@@ -27,7 +27,7 @@ var YamlValidatore = function(options) {
  */
 YamlValidatore.prototype.errored = function errored(msg) {
   this.logs.push(msg);
-  grunt.log.error(msg);
+  this.grunt.log.error(msg);
 };
 
 
@@ -58,8 +58,8 @@ YamlValidatore.prototype.validateStructure = function validateStructure(doc, str
     var item = structure[key];
 
     if (item instanceof Array) {
-      if (check(doc[key]).is('Array')) {
-        doc[key].forEach(function (child, index) {
+      if (check(doc).has(key) && check(doc[key]).is('Array')) {
+        doc[key].forEach(function eachArray(child, index) {
           notValid = validateStructure([child], item, current + '[' + index + ']');
           notFound = notFound.concat(notValid);
         });
@@ -91,16 +91,15 @@ YamlValidatore.prototype.validateStructure = function validateStructure(doc, str
  * @returns {number} 0 when no errors, 1 when errors.
  */
 YamlValidatore.prototype.checkFile = function checkFile(filepath) {
-
   // Verbose output will tell which file is being read
-  var data = grunt.file.read(filepath),
-    hadError = 0,
+  var data = this.grunt.file.read(filepath),
+    hadWarning = 0,
     _self = this;
 
   var doc = yaml.safeLoad(data, {
-    onWarning: function (error) {
-      hadError = 1;
-      _self.errored(error);
+    onWarning: function onWarning(error) {
+      hadWarning = 1;
+      _self.errored(filepath + ' > ' + error);
       if (_self.options.yaml &&
         typeof _self.options.yaml.onWarning === 'function') {
         _self.options.yaml.onWarning.call(this, error, filepath);
@@ -110,21 +109,20 @@ YamlValidatore.prototype.checkFile = function checkFile(filepath) {
 
   if (this.options.writeJson) {
     var json = JSON.stringify(doc, null, '  ');
-    grunt.file.write(filepath.replace(/yml$/, 'json'), json);
+    this.grunt.file.write(filepath.replace(/yml$/, 'json'), json);
   }
 
   if (this.options.structure) {
     var nonValidPaths = this.validateStructure(doc, this.options.structure);
 
     if (nonValidPaths.length > 0) {
-      hadError = 1;
       this.errored(filepath + ' is not following the correct structure, missing:');
-      this.errored(grunt.log.wordlist(nonValidPaths, {color: 'grey'}));
+      this.errored(this.grunt.log.wordlist(nonValidPaths, {color: 'grey'}));
       this.nonValidPaths = this.nonValidPaths.concat(nonValidPaths);
     }
   }
 
-  return hadError;
+  return hadWarning;
 };
 
 /**
@@ -132,9 +130,9 @@ YamlValidatore.prototype.checkFile = function checkFile(filepath) {
  */
 YamlValidatore.prototype.validate = function validate(files) {
   var _self = this;
-  this.inValidFiles = files.map(function (filepath) {
+  this.inValidFilesCount = files.map(function mapFiles(filepath) {
     return _self.checkFile(filepath);
-  }).reduce(function (prev, curr) {
+  }).reduce(function reduceFiles(prev, curr) {
     return prev + curr;
   });
 };
@@ -144,15 +142,15 @@ YamlValidatore.prototype.validate = function validate(files) {
  */
 YamlValidatore.prototype.report = function report() {
 
-  if (this.inValidFiles.length > 0) {
-    this.errored('Structure mismatching found in total of ' + this.inValidFiles.length + ' files');
+  if (this.inValidFilesCount > 0) {
+    this.errored('Yaml format related errors in ' + this.inValidFilesCount + ' files');
   }
 
   var len = this.nonValidPaths.length;
-  grunt.log.writeln('Total of ' + len + ' validation error' + grunt.util.pluralize(len, '/s'));
+  this.errored('Total of ' + len + ' structure validation error' + this.grunt.util.pluralize(len, '/s'));
 
   if (typeof this.options.log === 'string') {
-    grunt.file.write(this.options.log, grunt.log.uncolor(this.logs.join('\n')));
+    this.grunt.file.write(this.options.log, this.grunt.log.uncolor(this.logs.join('\n')));
   }
 };
 
@@ -168,7 +166,7 @@ module.exports = function yamlValidator(grunt) {
       writeJson: false
     });
 
-    var files = this.filesSrc.filter(function(filepath) {
+    var files = this.filesSrc.filter(function filterFiles(filepath) {
       if (!grunt.file.exists(filepath)) {
         grunt.log.warn('Source file "' + filepath + '" not found.');
         return false;
@@ -176,7 +174,7 @@ module.exports = function yamlValidator(grunt) {
       return true;
     });
 
-    var validator = new YamlValidatore(options);
+    var validator = new YamlValidatore(options, grunt);
     validator.validate(files);
     validator.report();
   });

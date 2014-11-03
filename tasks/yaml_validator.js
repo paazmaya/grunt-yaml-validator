@@ -8,8 +8,8 @@
 
 'use strict';
 
-var yaml = require('js-yaml'),
-  check = require('check-type').init();
+var yaml = require('js-yaml');
+var check = require('check-type').init();
 
 var YamlValidatore = function YamlValidatore(options, grunt) {
   this.options = options;
@@ -24,6 +24,7 @@ var YamlValidatore = function YamlValidatore(options, grunt) {
  * Wrapper to call Grunt API and store message for
  * possible later use by writing a log file.
  * @param {string} msg Error message
+ * @returns {void}
  */
 YamlValidatore.prototype.errored = function errored(msg) {
   this.logs.push(msg);
@@ -74,13 +75,13 @@ YamlValidatore.prototype.validateStructure = function validateStructure(doc, str
       // Key can be a index number when the structure is an array, but passed as a string
       notFound.push(notValid ? current : false);
     }
-    else if (typeof item == 'object' && item !== null) {
+    else if (typeof item === 'object' && item !== null) {
       notValid = validateStructure(doc[key], item, current);
       notFound = notFound.concat(notValid);
     }
   }
 
-  return notFound.filter(function (item) {
+  return notFound.filter(function filterFalse(item) {
     return item !== false;
   });
 };
@@ -127,6 +128,8 @@ YamlValidatore.prototype.checkFile = function checkFile(filepath) {
 
 /**
  * Create a report out of this, but in reality also run.
+ * @param {array} files List of files that have been checked that they exist
+ * @returns {void}
  */
 YamlValidatore.prototype.validate = function validate(files) {
   var _self = this;
@@ -139,6 +142,7 @@ YamlValidatore.prototype.validate = function validate(files) {
 
 /**
  * Create a report out of this, but in reality also run.
+ * @returns {void}
  */
 YamlValidatore.prototype.report = function report() {
 
@@ -156,7 +160,7 @@ YamlValidatore.prototype.report = function report() {
 
 module.exports = function yamlValidator(grunt) {
 
-  grunt.registerMultiTask('yaml_validator', 'Validate Yaml files and enforce a given structure', function() {
+  grunt.registerMultiTask('yaml_validator', 'Validate Yaml files and enforce a given structure', function registerMulti() {
 
     // Default options
     var options = this.options({

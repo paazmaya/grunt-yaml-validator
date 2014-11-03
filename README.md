@@ -10,7 +10,7 @@ and the structure defined via task configuration is enforced with
 
 ## Getting Started
 
-This plugin requires Grunt `~0.4` and Node.js `0.10.0`.
+This plugin requires Grunt `~0.4` and Node.js minimum `0.10.0`.
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
 [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
@@ -75,18 +75,6 @@ Default value: `false`
 In case the value is not `false`, the given string will be used as log file where all the
 task output is written.
 
-Please note that running Grunt with `-v` (verbose) mode does make a difference in the
-resulting output.
-
-
-#### options.keys, DEPRECATED since v0.6.0
-
-Type: `string|array`
-
-Default value: `false`
-
-An array to list the property structure which the Yaml files should contain.
-
 
 #### options.structure
 
@@ -109,15 +97,6 @@ Please note that the `onWarning` callback is being used by this plugin and any m
 will be run after the one implemented in this plugin.
 The callback get called with two parameters, of which the first is the error in question,
 while the second is the file path of the given Yaml file.
-
-
-#### options.types, DEPRECATED since v0.6.0
-
-Type: `object`
-
-Default: `false`
-
-The given object, when not null, is passed directly to [the `matches()` method](https://github.com/alistairjcbrown/check-type#example-checking-object-properties-using-matches).
 
 
 #### options.writeJson
@@ -164,77 +143,10 @@ grunt.initConfig({
 });
 ```
 
-#### Key structure option, DEPRECATED since v0.6.0
-
-Required keys are defined as strings, either a single one, or an array of them.
-
-In case the `key` is given as a string, it is considered to be a
-property path defined in dot notation, and is passed directly to the
-`has()` method of the
-[`check-type`](https://github.com/alistairjcbrown/check-type) plugin.
-
-```js
-grunt.initConfig({
-  yaml_validator: {
-    custom: {
-      options: {
-        keys: 'school.language'
-      },
-      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
-    }
-  }
-});
-```
-
-When the given structure is defined as an array of strings,
-it is validated through the `has()` method.
-
-```js
-grunt.initConfig({
-  yaml_validator: {
-    custom: {
-      options: {
-        keys: [
-          'school',
-          'school.description',
-          'school.title',
-          'school.language'
-        ]
-      },
-      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
-    }
-  }
-});
-```
-
-#### Type definition option, DEPRECATED since v0.6.0
-
-When the `types` configuration options is used, it is passed directly to the
-`matches()` of the `check-type` plugin.
-
-```js
-grunt.initConfig({
-  yaml_validator: {
-    custom: {
-      options: {
-        types: {
-          'school.description': 'string',
-          'school.code': 'number',
-          'school.principal': 'object',
-          'school.principal.name': 'string'
-        }
-      },
-      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
-    }
-  }
-});
-```
-
 #### Structure validation options
 
-The example below validates the `school` in a same way as the above example.
-
-The difference can be seen in the `classRooms` property, which according to the configuration below,
+In case an array is found, all its members are assumed to have the given structure.
+This can be seen in the `classRooms` property, which according to the configuration below,
 should be an array, for which all items are objects, which all should have a `name` and `id`
 properties, with the given types.
 
@@ -272,7 +184,7 @@ grunt.initConfig({
 
 #### Warning callback in Yaml parsing options
 
-Using the `onWarning` callback, the possible parsing errors can be retrieved.
+Using the `options.yaml.onWarning` callback, the possible parsing errors can be retrieved.
 
 ```js
 grunt.initConfig({
@@ -330,6 +242,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.5.1 (2014-11-03) New option to save Yaml files as pretty printed JSON files
 * v0.5.2 (2014-11-03) Tag mismatch in earlier version
 * v0.6.0 (2014-11-03) New option `structure` to replace `types` and `keys`
+* v0.7.0 (2014-11-03) Removed deprecated options `types` and `keys` and report rewording
 
 ## License
 

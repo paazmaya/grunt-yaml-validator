@@ -12,12 +12,11 @@ var yaml = require('js-yaml'),
   check = require('check-type').init(),
   grunt = require('grunt');
 
-var YamlValidatore = function(files, options) {
-  this.files = files;
+var YamlValidatore = function(options) {
   this.options = options;
   this.logs = [];
-  this.mismatchedTypes = []; // list of filepaths
-  this.missingKeys = 0;
+  this.nonValidPaths = [];
+  this.inValidFiles = []; // list of filepaths
 };
 
 
@@ -31,28 +30,6 @@ YamlValidatore.prototype.errored = function errored(msg) {
   grunt.log.error(msg);
 };
 
-
-/**
- * Check that the given object matches the given key structure.
- * @param {Object} doc Object loaded from Yaml file
- * @param {string|Array} keys List of required keys
- * @returns {Array} List of missing keys
- */
-YamlValidatore.prototype.checkKeys = function checkKeys(doc, keys) {
-  var missing = [];
-
-  if (typeof keys === 'string') {
-    keys = [keys];
-  }
-  keys.forEach(function (key) {
-    var has = check(doc).has(key);
-    if (!has) {
-      missing.push(key);
-    }
-  });
-
-  return missing;
-};
 
 /**
  * Check that the given structure is available.
@@ -105,17 +82,6 @@ YamlValidatore.prototype.validateStructure = function validateStructure(doc, str
 };
 
 /**
- * Check that the requirements are matched.
- * @param {Object} doc Object loaded from Yaml file
- * @param {Object} types Type requirements
- * @returns {boolean} Doc has the types defined
- */
-YamlValidatore.prototype.checkTypes = function checkTypes(doc, types) {
-  var checked = check(doc).matches(types);
-  return checked;
-};
-
-/**
  * Read the given Yaml file, load and check its structure.
  * @param {string} filepath Yaml file path
  * @returns {number} 0 when no errors, 1 when errors.
@@ -144,35 +110,13 @@ YamlValidatore.prototype.checkFile = function checkFile(filepath) {
   }
 
   if (this.options.structure) {
-    var validStructure = this.validateStructure(doc, this.options.structure);
+    var nonValidPaths = this.validateStructure(doc, this.options.structure);
 
-    if (validStructure.length > 0) {
+    if (nonValidPaths.length > 0) {
       hadError = 1;
       this.errored(filepath + ' is not following the correct structure, missing:');
-      this.errored(grunt.log.wordlist(validStructure, {color: 'grey'}));
-    }
-  }
-
-  if (this.options.keys) {
-    var missing = this.checkKeys(doc, this.options.keys);
-    var len = missing.length;
-
-    if (len > 0) {
-      hadError = 1;
-      this.errored(filepath + ' is missing the following keys: ');
-      this.errored(grunt.log.wordlist(missing, {color: 'grey'}));
-    }
-
-    // Increment the number of keys that were not according to the requirement
-    this.missingKeys += len;
-  }
-
-  if (this.options.types) {
-    var mismatching = this.checkTypes(doc, this.options.types);
-    if (!mismatching) {
-      hadError = 1;
-      this.errored(filepath + ' is not matching the type requirements');
-      this.mismatchedTypes.push(filepath);
+      this.errored(grunt.log.wordlist(nonValidPaths, {color: 'grey'}));
+      this.nonValidPaths = this.nonValidPaths.concat(nonValidPaths);
     }
   }
 
@@ -182,42 +126,26 @@ YamlValidatore.prototype.checkFile = function checkFile(filepath) {
 /**
  * Create a report out of this, but in reality also run.
  */
-YamlValidatore.prototype.validate = function validate() {
+YamlValidatore.prototype.validate = function validate(files) {
   var _self = this;
-  this.haveErrors = this.files.map(function (filepath) {
+  this.inValidFiles = files.map(function (filepath) {
     return _self.checkFile(filepath);
   }).reduce(function (prev, curr) {
     return prev + curr;
   });
-
 };
 
 /**
  * Create a report out of this, but in reality also run.
  */
 YamlValidatore.prototype.report = function report() {
-  var msg;
 
-  if (this.mismatchedTypes.length > 0) {
-    this.errored('Type mismatching found in total of ' + this.mismatchedTypes.length + ' files');
-  }
-  else {
-    msg = 'No mismatching type requirements found.';
-    this.logs.push(msg);
-    grunt.verbose.writeln(msg);
+  if (this.inValidFiles.length > 0) {
+    this.errored('Structure mismatching found in total of ' + this.inValidFiles.length + ' files');
   }
 
-  if (this.missingKeys === 0) {
-    msg = 'All done. No missing keys found. Thank you.';
-    this.logs.push(msg);
-    grunt.verbose.writeln(msg);
-  }
-  else {
-    this.errored('Found missing keys, total of: ' + this.missingKeys);
-  }
-
-  grunt.verbose.writeln('Out of ' + this.files.length + ' files, ' + this.haveErrors + ' have validation errors');
-
+  var len = this.nonValidPaths.length;
+  grunt.log.writeln('Total of ' + len + ' validation error' + grunt.util.pluralize(len, '/s'));
 
   if (typeof this.options.log === 'string') {
     grunt.file.write(this.options.log, grunt.log.uncolor(this.logs.join('\n')));
@@ -231,8 +159,6 @@ module.exports = function yamlValidator(grunt) {
     // Default options
     var options = this.options({
       log: false,
-      keys: false,
-      types: false,
       structure: false,
       yaml: false,
       writeJson: false
@@ -246,10 +172,9 @@ module.exports = function yamlValidator(grunt) {
       return true;
     });
 
-    var validator = new YamlValidatore(files, options);
-    validator.validate();
+    var validator = new YamlValidatore(options);
+    validator.validate(files);
     validator.report();
-
   });
 
 };

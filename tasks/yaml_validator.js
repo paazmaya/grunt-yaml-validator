@@ -55,9 +55,60 @@ YamlValidatore.prototype.checkKeys = function checkKeys(doc, keys) {
 };
 
 /**
- *
+ * Check that the given structure is available.
  * @param {Object} doc Object loaded from Yaml file
- * @param types
+ * @param {Object} structure Structure requirements
+ * @param {string} parent Address in a dot notation
+ * @returns {Array} List of not found structure paths
+ */
+YamlValidatore.prototype.validateStructure = function validateStructure(doc, structure, parent) {
+  var notFound = [],
+    current = '',
+    validate;
+
+  parent = parent || '';
+
+  for (var key in structure) {
+    if (!structure.hasOwnProperty(key)) {
+      continue;
+    }
+
+    current = parent + (parent.length > 0 ? '.' : '') + key;
+
+    var item = structure[key];
+
+    if (item instanceof Array) {
+      if (check(doc[key]).is('Array')) {
+        doc[key].forEach(function (child) {
+          validate = validateStructure(child, item, current);
+          notFound = notFound.concat(validate);
+        });
+      }
+      else {
+        notFound.push(false);
+      }
+    }
+    else if (typeof item === 'string') {
+      validate = (check(structure).is('Array') || check(doc).has(key)) && check(doc[key]).is(item);
+      // Key can be a index number when the structure is an array, but passed as a string
+      notFound.push(validate ? false : current);
+    }
+    else if (typeof item == 'object' && item !== null) {
+      validate = validateStructure(doc[key], item, current);
+      notFound = notFound.concat(validate);
+    }
+  }
+
+  return notFound.filter(function (item) {
+    return item !== false;
+  });
+};
+
+/**
+ * Check that the requirements are matched.
+ * @param {Object} doc Object loaded from Yaml file
+ * @param {Object} types Type requirements
+ * @returns {boolean} Doc has the types defined
  */
 YamlValidatore.prototype.checkTypes = function checkTypes(doc, types) {
   var checked = check(doc).matches(types);
@@ -90,6 +141,16 @@ YamlValidatore.prototype.checkFile = function checkFile(filepath) {
   if (this.options.writeJson) {
     var json = JSON.stringify(doc, null, '  ');
     grunt.file.write(filepath.replace(/yml$/, 'json'), json);
+  }
+
+  if (this.options.structure) {
+    var validStructure = this.validateStructure(doc, this.options.structure);
+
+    if (validStructure.length > 0) {
+      hadError = 1;
+      this.errored(filepath + ' is not following the correct structure, missing:');
+      this.errored(grunt.log.wordlist(validStructure, {color: 'grey'}));
+    }
   }
 
   if (this.options.keys) {
@@ -172,6 +233,7 @@ module.exports = function yamlValidator(grunt) {
       log: false,
       keys: false,
       types: false,
+      structure: false,
       yaml: false,
       writeJson: false
     });

@@ -78,13 +78,24 @@ task output is written.
 Please note that running Grunt with `-v` (verbose) mode does make a difference in the
 resulting output.
 
-#### options.keys
+
+#### options.keys, DEPRECATED since v0.6.0
 
 Type: `string|array`
 
 Default value: `false`
 
 An array to list the property structure which the Yaml files should contain.
+
+
+#### options.structure
+
+Type: `object`
+
+Default value: `false`
+
+The most complex style of checking validity.
+
 
 #### options.yaml
 
@@ -99,7 +110,8 @@ will be run after the one implemented in this plugin.
 The callback get called with two parameters, of which the first is the error in question,
 while the second is the file path of the given Yaml file.
 
-#### options.types
+
+#### options.types, DEPRECATED since v0.6.0
 
 Type: `object`
 
@@ -117,6 +129,7 @@ Default: `false`
 Write the given Yaml file as pretty printed JSON in the same path, just by changing the file extension to `json`.
 
 Please note that any existing JSON files will be cruelly overwritten.
+
 
 ### Usage Examples
 
@@ -151,7 +164,7 @@ grunt.initConfig({
 });
 ```
 
-#### Key structure option
+#### Key structure option, DEPRECATED since v0.6.0
 
 Required keys are defined as strings, either a single one, or an array of them.
 
@@ -194,7 +207,7 @@ grunt.initConfig({
 });
 ```
 
-#### Type definition option
+#### Type definition option, DEPRECATED since v0.6.0
 
 When the `types` configuration options is used, it is passed directly to the
 `matches()` of the `check-type` plugin.
@@ -209,6 +222,46 @@ grunt.initConfig({
           'school.code': 'number',
           'school.principal': 'object',
           'school.principal.name': 'string'
+        }
+      },
+      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
+    }
+  }
+});
+```
+
+#### Structure validation options
+
+The example below validates the `school` in a same way as the above example.
+
+The difference can be seen in the `classRooms` property, which according to the configuration below,
+should be an array, for which all items are objects, which all should have a `name` and `id`
+properties, with the given types.
+
+The `teachers` array is made of strings, thus all items in that array must be a string.
+
+```js
+grunt.initConfig({
+  yaml_validator: {
+    custom: {
+      options: {
+        structure: {
+          school: {
+            description: 'string',
+            code: 'number',
+            principal: {
+              name: 'string'
+            },
+            classRooms: [
+              {
+                name: 'string',
+                id: 'number'
+              }
+            ],
+            teachers: [
+              'string'
+            ]
+          }
         }
       },
       src: ['configuration/*.yml', 'other/important/*_stuff.yml']
@@ -276,6 +329,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.5.0 (2014-10-31) Default option values unified to be false. Multitasking fixed.
 * v0.5.1 (2014-11-03) New option to save Yaml files as pretty printed JSON files
 * v0.5.2 (2014-11-03) Tag mismatch in earlier version
+* v0.6.0 (2014-11-03) New option `structure` to replace `types` and `keys`
 
 ## License
 

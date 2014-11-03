@@ -275,6 +275,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.4.0 (2014-10-30) Added type checking configuration option
 * v0.5.0 (2014-10-31) Default option values unified to be false. Multitasking fixed.
 * v0.5.1 (2014-11-03) New option to save Yaml files as pretty printed JSON files
+* v0.5.2 (2014-11-03) Tag mismatch in earlier version
 
 ## License
 

@@ -3,6 +3,7 @@
 > Validate Yaml files and enforce a given structure
 
 [![Dependency Status](https://david-dm.org/paazmaya/grunt-yaml-validator.svg)](https://david-dm.org/paazmaya/grunt-yaml-validator)
+[![Build Status](https://drone.io/github.com/paazmaya/grunt-yaml-validator/status.png)](https://drone.io/github.com/paazmaya/grunt-yaml-validator/latest)
 
 [Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)
 and the structure defined via task configuration is enforced with

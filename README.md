@@ -2,8 +2,10 @@
 
 > Validate Yaml files and enforce a given structure
 
-[![Dependency Status](https://david-dm.org/paazmaya/grunt-yaml-validator.svg)](https://david-dm.org/paazmaya/grunt-yaml-validator)
-[![Build Status](https://drone.io/github.com/paazmaya/grunt-yaml-validator/status.png)](https://drone.io/github.com/paazmaya/grunt-yaml-validator/latest)
+[![Dependency Status](https://img.shields.io/david-dm/paazmaya/grunt-yaml-validator.svg?style=flat-square)](https://david-dm.org/paazmaya/grunt-yaml-validator)
+[![Build Status](https://img.shields.io/drone/paazmaya/grunt-yaml-validator/status.svg?style=flat-square)](https://drone.io/github.com/paazmaya/grunt-yaml-validator/latest)
+[![Built with Grunt](http://img.shields.io/badge/Grunt-0.4-blue.svg?style=flat-square)](http://gruntjs.com/)
+[![Analytics](https://ga-beacon.appspot.com/UA-2643697-15/grunt-yaml-validator/index)](https://github.com/igrigorik/ga-beacon)
 
 [Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)
 and the structure defined via task configuration is enforced with

@@ -97,16 +97,23 @@ YamlValidatore.prototype.checkFile = function checkFile(filepath) {
     hadWarning = 0,
     _self = this;
 
-  var doc = yaml.safeLoad(data, {
-    onWarning: function onWarning(error) {
-      hadWarning = 1;
-      _self.errored(filepath + ' > ' + error);
-      if (_self.options.yaml &&
-        typeof _self.options.yaml.onWarning === 'function') {
-        _self.options.yaml.onWarning.call(this, error, filepath);
+  var doc;
+  try {
+    doc = yaml.safeLoad(data, {
+      onWarning: function onWarning(error) {
+        hadWarning = 1;
+        _self.errored(filepath + ' > ' + error);
+        if (_self.options.yaml &&
+          typeof _self.options.yaml.onWarning === 'function') {
+          _self.options.yaml.onWarning.call(this, error, filepath);
+        }
       }
-    }
-  });
+    });
+  }
+  catch (error) {
+    this.grunt.warn.error(error);
+    return 1;
+  }
 
   if (this.options.writeJson) {
     var json = JSON.stringify(doc, null, '  ');

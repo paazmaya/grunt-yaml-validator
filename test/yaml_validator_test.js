@@ -39,8 +39,8 @@ exports.yaml_validator = {
   defaults_options: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
+    var actual = grunt.file.read('tmp/defaults.yml');
+    var expected = grunt.file.read('test/expected/defaults.yml');
     test.equal(actual, expected, 'should describe what the default behavior is.');
 
     test.done();

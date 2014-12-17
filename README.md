@@ -248,6 +248,7 @@ Please note that any features or changed will not be merged without working unit
 * v0.7.0 (2014-11-03) Removed deprecated options `types` and `keys` and report rewording
 * v0.7.1 (2014-11-03) Object properties in array are correctly matched
 * v0.7.2 (2014-11-03) Undefined key crashes if used
+* v0.7.3 (2014-12-17) Try/catch around Yaml parsing to avoid breaking in between files
 
 ## License
 

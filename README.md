@@ -236,22 +236,22 @@ Please note that any features or changed will not be merged without working unit
 
 ## Release History
 
-* v0.1.0 (2014-10-27) Initial release to the World
-* v0.1.1 (2014-10-27) Fix structure type and update documentation
-* v0.2.0 (2014-10-27) Log file option
-* v0.2.1 (2014-10-27) Remove unused dependency
-* v0.2.2 (2014-10-28) Log total number as last in the output string
-* v0.3.0 (2014-10-29) Extended `keys` configuration option which was renamed from `structure`
-* v0.4.0 (2014-10-30) Added type checking configuration option
-* v0.5.0 (2014-10-31) Default option values unified to be false. Multitasking fixed.
-* v0.5.1 (2014-11-03) New option to save Yaml files as pretty printed JSON files
-* v0.5.2 (2014-11-03) Tag mismatch in earlier version
-* v0.6.0 (2014-11-03) New option `structure` to replace `types` and `keys`
-* v0.7.0 (2014-11-03) Removed deprecated options `types` and `keys` and report rewording
-* v0.7.1 (2014-11-03) Object properties in array are correctly matched
-* v0.7.2 (2014-11-03) Undefined key crashes if used
 * v0.7.3 (2014-12-17) Try/catch around Yaml parsing to avoid breaking in between files
+* v0.7.2 (2014-11-03) Undefined key crashes if used
+* v0.7.1 (2014-11-03) Object properties in array are correctly matched
+* v0.7.0 (2014-11-03) Removed deprecated options `types` and `keys` and report rewording
+* v0.6.0 (2014-11-03) New option `structure` to replace `types` and `keys`
+* v0.5.2 (2014-11-03) Tag mismatch in earlier version
+* v0.5.1 (2014-11-03) New option to save Yaml files as pretty printed JSON files
+* v0.5.0 (2014-10-31) Default option values unified to be false. Multitasking fixed.
+* v0.4.0 (2014-10-30) Added type checking configuration option
+* v0.3.0 (2014-10-29) Extended `keys` configuration option which was renamed from `structure`
+* v0.2.2 (2014-10-28) Log total number as last in the output string
+* v0.2.1 (2014-10-27) Remove unused dependency
+* v0.2.0 (2014-10-27) Log file option
+* v0.1.1 (2014-10-27) Fix structure type and update documentation
+* v0.1.0 (2014-10-27) Initial release to the World
 
 ## License
 
-Copyright (c) Juga Paazmaya, licensed under [the MIT license](LICENSE-MIT)
+Copyright (c) Juga Paazmaya, licensed under [the MIT license](LICENSE-MIT).

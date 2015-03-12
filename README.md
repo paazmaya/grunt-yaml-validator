@@ -2,7 +2,7 @@
 
 > Validate Yaml files and enforce a given structure
 
-[![Dependency Status](https://img.shields.io/david-dm/paazmaya/grunt-yaml-validator.svg?style=flat-square)](https://david-dm.org/paazmaya/grunt-yaml-validator)
+[![Dependency Status](https://img.shields.io/david/paazmaya/grunt-yaml-validator.svg?style=flat-square)](https://david-dm.org/paazmaya/grunt-yaml-validator)
 [![Build Status](https://img.shields.io/drone/paazmaya/grunt-yaml-validator/status.svg?style=flat-square)](https://drone.io/github.com/paazmaya/grunt-yaml-validator/latest)
 [![Built with Grunt](http://img.shields.io/badge/Grunt-0.4-blue.svg?style=flat-square)](http://gruntjs.com/)
 [![Analytics](https://ga-beacon.appspot.com/UA-2643697-15/grunt-yaml-validator/index?flat)](https://github.com/igrigorik/ga-beacon)

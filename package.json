@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "check-type": "~0.4",
-    "js-yaml": "~3.2"
+    "js-yaml": "~3.3"
   },
   "devDependencies": {
     "blanket": "~1.1",
@@ -43,7 +43,7 @@
     "grunt-eslint": "~12.0",
     "grunt-mocha-test": "~0.12",
     "jit-grunt": "~0.9",
-    "mocha": "~2.1",
+    "mocha": "~2.2",
     "time-grunt": "~1.1"
   },
   "peerDependencies": {

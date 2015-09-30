@@ -46,10 +46,7 @@ YamlValidatore.prototype.validateStructure = function validateStructure(doc, str
 
   parent = parent || '';
 
-  for (var key in structure) {
-    if (!structure.hasOwnProperty(key)) {
-      continue;
-    }
+  Object.keys(structure).forEach(function eachKey(key) {
 
     current = parent;
     if (!check(structure).is('Array')) {
@@ -79,7 +76,9 @@ YamlValidatore.prototype.validateStructure = function validateStructure(doc, str
       notValid = validateStructure(doc[key], item, current);
       notFound = notFound.concat(notValid);
     }
-  }
+
+  });
+
 
   return notFound.filter(function filterFalse(item) {
     return item !== false;

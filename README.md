@@ -254,4 +254,4 @@ Please note that any features or changed will not be merged without working unit
 
 ## License
 
-Copyright (c) Juga Paazmaya, licensed under [the MIT license](LICENSE-MIT).
+Copyright (c) Juga Paazmaya, licensed under [the MIT license](LICENSE).

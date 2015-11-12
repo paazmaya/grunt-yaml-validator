@@ -2,13 +2,13 @@
  * grunt-yaml-validator
  * https://github.com/paazmaya/grunt-yaml-validator
  *
- * Copyright (c) Juga Paazmaya <paazmaya@yahoo.com>
+ * Copyright (c) Juga Paazmaya <paazmaya@yahoo.com> (http://paazmaya.fi)
  * Licensed under the MIT license.
  */
 
 'use strict';
 
-var yaml = require('js-yaml');
+const yaml = require('js-yaml');
 var check = require('check-type').init();
 
 var YamlValidatore = function YamlValidatore(options, grunt) {

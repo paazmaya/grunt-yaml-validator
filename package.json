@@ -23,10 +23,11 @@
     "README.md"
   ],
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=4.2.0"
   },
   "scripts": {
-    "test": "grunt eslint"
+    "test": "grunt eslint",
+    "lint": "grunt eslint"
   },
   "dependencies": {
     "check-type": "~0.4",

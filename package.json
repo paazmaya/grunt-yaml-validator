@@ -31,16 +31,16 @@
   },
   "dependencies": {
     "check-type": "~0.4",
-    "js-yaml": "~3.4"
+    "js-yaml": "~3.5"
   },
   "devDependencies": {
-    "blanket": "~1.1",
+    "blanket": "~1.2",
     "grunt": "~0.4",
     "grunt-eslint": "~17.3",
     "grunt-mocha-test": "~0.12",
     "jit-grunt": "~0.9",
-    "mocha": "~2.3",
-    "time-grunt": "~1.2"
+    "mocha": "~2.4",
+    "time-grunt": "~1.3"
   },
   "peerDependencies": {
     "grunt": "~0.4"

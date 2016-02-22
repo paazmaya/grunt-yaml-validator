@@ -9,7 +9,7 @@
 'use strict';
 
 const yaml = require('js-yaml');
-var check = require('check-type').init();
+const check = require('check-type').init();
 
 var YamlValidatore = function YamlValidatore(options, grunt) {
   this.options = options;
@@ -169,14 +169,14 @@ module.exports = function yamlValidator(grunt) {
   grunt.registerMultiTask('yaml_validator', 'Validate Yaml files and enforce a given structure', function registerMulti() {
 
     // Default options
-    var options = this.options({
+    const options = this.options({
       log: false,
       structure: false,
       yaml: false,
       writeJson: false
     });
 
-    var files = this.filesSrc.filter(function filterFiles(filepath) {
+    const files = this.filesSrc.filter(function filterFiles(filepath) {
       if (!grunt.file.exists(filepath)) {
         grunt.log.warn('Source file "' + filepath + '" not found.');
         return false;
@@ -184,7 +184,7 @@ module.exports = function yamlValidator(grunt) {
       return true;
     });
 
-    var validator = new YamlValidatore(options, grunt);
+    const validator = new YamlValidatore(options, grunt);
     validator.validate(files);
     validator.report();
   });

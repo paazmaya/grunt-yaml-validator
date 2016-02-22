@@ -64,7 +64,7 @@ module.exports = function gruntLoad(grunt) {
 
       logged: {
         options: {
-          log: 'tmp/yaml-validator.log'
+          log: 'yaml-validator.log'
         },
         src: ['test/fixtures/logged.yml']
       }

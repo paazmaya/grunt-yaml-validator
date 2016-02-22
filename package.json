@@ -1,7 +1,7 @@
 {
   "name": "grunt-yaml-validator",
   "description": "Validate Yaml files and enforce a given structure",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "homepage": "https://github.com/paazmaya/grunt-yaml-validator",
   "author": {
     "name": "Juga Paazmaya",
@@ -30,8 +30,7 @@
     "lint": "grunt eslint"
   },
   "dependencies": {
-    "check-type": "~0.4",
-    "js-yaml": "~3.5"
+    "yaml-validator": "^0.1.0"
   },
   "devDependencies": {
     "blanket": "~1.2",

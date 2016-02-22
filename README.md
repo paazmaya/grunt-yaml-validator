@@ -9,7 +9,8 @@
 
 [Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)
 and the structure defined via task configuration is enforced with
-[`check-type`](https://github.com/alistairjcbrown/check-type).
+[`check-type`](https://github.com/alistairjcbrown/check-type), that are both used via
+[`yaml-validator`](https://www.npmjs.com/package/yaml-validator).
 
 ## Getting Started
 
@@ -236,6 +237,8 @@ Please note that any features or changed will not be merged without working unit
 
 ## Release History
 
+* `v0.9.0` (2016-02-22)
+  - Start using [`yaml-validator`](https://www.npmjs.com/package/yaml-validator) separately
 * `v0.8.0` (2016-02-22)
   - Minimum Node.js version required/supported is now `4.2.0` (LTS)
   - Update dependencies

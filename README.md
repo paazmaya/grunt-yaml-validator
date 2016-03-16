@@ -3,7 +3,7 @@
 > Validate Yaml files and enforce a given structure
 
 [![Dependency Status](https://img.shields.io/david/paazmaya/grunt-yaml-validator.svg?style=flat-square)](https://david-dm.org/paazmaya/grunt-yaml-validator)
-[![Build Status](https://img.shields.io/drone/paazmaya/grunt-yaml-validator/status.svg?style=flat-square)](https://drone.io/github.com/paazmaya/grunt-yaml-validator/latest)
+[![Build Status](https://semaphoreci.com/api/v1/paazmaya/grunt-yaml-validator/branches/master/badge.svg)](https://semaphoreci.com/paazmaya/grunt-yaml-validator)
 [![Built with Grunt](http://img.shields.io/badge/Grunt-0.4-blue.svg?style=flat-square)](http://gruntjs.com/)
 [![Analytics](https://ga-beacon.appspot.com/UA-2643697-15/grunt-yaml-validator/index?flat)](https://github.com/igrigorik/ga-beacon)
 
@@ -275,6 +275,6 @@ Please note that any features or changed will not be merged without working unit
 
 ## License
 
-Copyright (c) [Juga Paazmaya](http://www.paazmaya.fi) <paazmaya@yahoo.com>
+Copyright (c) [Juga Paazmaya](http://paazmaya.fi) <paazmaya@yahoo.com>
 
 Licensed under [the MIT license](LICENSE).

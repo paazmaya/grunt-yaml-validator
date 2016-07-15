@@ -6,7 +6,7 @@
   "author": {
     "name": "Juga Paazmaya",
     "email": "paazmaya@yahoo.com",
-    "url": "http://paazmaya.fi"
+    "url": "https://paazmaya.fi"
   },
   "main": "tasks/yaml_validator.js",
   "repository": {
@@ -30,7 +30,7 @@
     "lint": "grunt eslint"
   },
   "dependencies": {
-    "yaml-validator": "^0.1.0"
+    "yaml-validator": "^0.2.0"
   },
   "devDependencies": {
     "blanket": "~1.2",

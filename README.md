@@ -3,7 +3,7 @@
 > Validate Yaml files and enforce a given structure
 
 [![Dependency Status](https://img.shields.io/david/paazmaya/grunt-yaml-validator.svg?style=flat-square)](https://david-dm.org/paazmaya/grunt-yaml-validator)
-[![Build Status](https://semaphoreci.com/api/v1/paazmaya/grunt-yaml-validator/branches/master/badge.svg)](https://semaphoreci.com/paazmaya/grunt-yaml-validator)
+[![Build Status](https://semaphoreci.com/api/v1/paazmaya/grunt-yaml-validator/branches/master/shields_badge.svg)](https://semaphoreci.com/paazmaya/grunt-yaml-validator)
 [![Built with Grunt](http://img.shields.io/badge/Grunt-1.0-blue.svg?style=flat-square)](http://gruntjs.com/)
 [![Analytics](https://ga-beacon.appspot.com/UA-2643697-15/grunt-yaml-validator/index?flat)](https://github.com/igrigorik/ga-beacon)
 
@@ -233,10 +233,15 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 Add unit tests for any new or changed functionality.
 Lint with [ESLint](http://eslint.org) and test your code using unit tests.
 
-Please note that any features or changed will not be merged without working unit tests.
+Please note that any features or changes will not be merged without working unit tests.
 
 ## Release History
 
+* `v0.10.0` (2016-08-10)
+  - Dependencies are sure :tophat: up to date, among `yaml-validator` version `0.2.0`
+  - Moved testing from Drone.io to [Semaphore](https://semaphoreci.com/paazmaya/grunt-yaml-validator)
+  - Grunt `v1.0.0` is now the minimum
+  - Use shared ESLint configuration and ESLint directly without the Grunt.js plugin
 * `v0.9.0` (2016-02-22)
   - Start using [`yaml-validator`](https://www.npmjs.com/package/yaml-validator) separately
 * `v0.8.0` (2016-02-22)

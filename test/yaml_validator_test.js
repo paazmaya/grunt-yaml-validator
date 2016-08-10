@@ -8,7 +8,7 @@
 
 'use strict';
 
-var grunt = require('grunt');
+const grunt = require('grunt');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -39,8 +39,8 @@ exports.yaml_validator = {
   defaults_options: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/defaults.yml');
-    var expected = grunt.file.read('test/expected/defaults.yml');
+    const actual = grunt.file.read('tmp/defaults.yml');
+    const expected = grunt.file.read('test/expected/defaults.yml');
     test.equal(actual, expected, 'should describe what the default behavior is.');
 
     test.done();
@@ -49,8 +49,8 @@ exports.yaml_validator = {
   logged_options: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
+    const actual = grunt.file.read('tmp/custom_options');
+    const expected = grunt.file.read('test/expected/custom_options');
     test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
 
     test.done();

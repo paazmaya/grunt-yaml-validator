@@ -13,17 +13,6 @@ module.exports = function gruntLoad(grunt) {
   require('jit-grunt')(grunt);
 
   grunt.initConfig({
-    eslint: {
-      options: {
-        config: '.eslintrc.json',
-        format: 'stylish'
-      },
-      target: [
-        'Gruntfile.js',
-        'tasks/*.js'
-      ]
-    },
-
     mochaTest: {
       test: {
         options: {
@@ -76,5 +65,5 @@ module.exports = function gruntLoad(grunt) {
   grunt.loadTasks('tasks');
 
   grunt.registerTask('test', ['yaml_validator', 'mochaTest']);
-  grunt.registerTask('default', ['eslint', 'test']);
+  grunt.registerTask('default', ['test']);
 };

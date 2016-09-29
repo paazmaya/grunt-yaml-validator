@@ -25,8 +25,10 @@ module.exports = function yamlValidator(grunt) {
     const files = this.filesSrc.filter(function filterFiles(filepath) {
       if (!grunt.file.exists(filepath)) {
         grunt.log.warn('Source file "' + filepath + '" not found.');
+
         return false;
       }
+
       return true;
     });
 

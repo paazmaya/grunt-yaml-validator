@@ -30,13 +30,13 @@
     "lint": "eslint -c .eslintrc.json tasks Gruntfile.js"
   },
   "dependencies": {
-    "yaml-validator": "^0.2.1"
+    "yaml-validator": "^0.3.0"
   },
   "devDependencies": {
     "blanket": "~1.2",
     "eslint-config-paazmaya": "^3.0.0",
     "grunt": "~1.0",
-    "eslint": "~3.6",
+    "eslint": "~3.9",
     "grunt-mocha-test": "~0.13",
     "jit-grunt": "~0.10",
     "mocha": "~3.1",

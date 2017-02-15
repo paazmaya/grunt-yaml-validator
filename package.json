@@ -36,7 +36,7 @@
     "blanket": "~1.2",
     "eslint-config-paazmaya": "^3.1.0",
     "grunt": "~1.0",
-    "eslint": "~3.10",
+    "eslint": "~3.15",
     "grunt-mocha-test": "~0.13",
     "jit-grunt": "~0.10",
     "mocha": "~3.2",

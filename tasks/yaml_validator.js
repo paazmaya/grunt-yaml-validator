@@ -35,6 +35,13 @@ module.exports = function yamlValidator(grunt) {
     const validator = new YamlValidatore(options);
     validator.validate(files);
     validator.report();
+    
+    if (validator.inValidFilesCount) {
+      grunt.fail.warn('YAML validation errors found.');
+    } else {
+      var filesCount = files.length;
+      grunt.log.ok(filesCount + ' ' + grunt.util.pluralize(filesCount, 'file/files') + ' lint free.');
+    }
   });
 
 };

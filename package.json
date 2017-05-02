@@ -27,7 +27,7 @@
   },
   "scripts": {
     "test": "grunt test",
-    "lint": "eslint -c .eslintrc.json tasks Gruntfile.js"
+    "lint": "eslint tasks Gruntfile.js"
   },
   "dependencies": {
     "yaml-validator": "^0.3.0"
@@ -36,10 +36,10 @@
     "blanket": "~1.2",
     "eslint-config-paazmaya": "^3.2.0",
     "grunt": "~1.0",
-    "eslint": "~3.18",
+    "eslint": "~3.19",
     "grunt-mocha-test": "~0.13",
     "jit-grunt": "~0.10",
-    "mocha": "~3.2",
+    "mocha": "~3.3",
     "time-grunt": "~1.4"
   },
   "peerDependencies": {

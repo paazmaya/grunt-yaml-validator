@@ -14,7 +14,7 @@ and the structure defined via task configuration is enforced with
 
 ## Getting Started
 
-This plugin requires Grunt `>=0.4.0` and Node.js minimum `4.2.0` (LTS).
+This plugin requires Grunt `>=0.4.0` and Node.js minimum `6.9.5` (LTS).
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
 [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
@@ -238,6 +238,8 @@ Please note that any features or changes will not be merged without working unit
 
 ## Release History
 
+* `v0.11.0` (2017-07)
+  - Minimum Node.js version lifted from `4.2.0` to `6.9.5`
 * `v0.10.0` (2016-08-10)
   - Dependencies are sure :tophat: up to date, among `yaml-validator` version `0.2.0`
   - Moved testing from Drone.io to [Semaphore](https://semaphoreci.com/paazmaya/grunt-yaml-validator)

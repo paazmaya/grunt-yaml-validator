@@ -14,7 +14,7 @@ and the structure defined via task configuration is enforced with
 
 ## Getting Started
 
-This plugin requires [Grunt](http://gruntjs.com/) `>=0.4.0` and [Node.js](https://nodejs.org/en/) minimum of `6.9.5`, which is [the Long Term Support (LTS) version](https://github.com/nodejs/LTS#lts-schedule1).
+This plugin requires [Grunt](http://gruntjs.com/) `>=0.4.0` and [Node.js](https://nodejs.org/en/) minimum of `8.11.1`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
 [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to

@@ -34,12 +34,12 @@
   },
   "devDependencies": {
     "blanket": "~1.2",
-    "eslint-config-paazmaya": "^4.3.0",
+    "eslint-config-paazmaya": "^5.0.0",
     "grunt": "~1.0",
-    "eslint": "~4.19",
+    "eslint": "~5.4",
     "grunt-mocha-test": "~0.13",
     "jit-grunt": "~0.10",
-    "mocha": "~5.0",
+    "mocha": "~5.2",
     "time-grunt": "~1.4"
   },
   "peerDependencies": {

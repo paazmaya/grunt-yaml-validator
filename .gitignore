@@ -3,3 +3,4 @@ npm-debug.log
 tmp
 yaml-validator.log
 results.txt
+package-lock.json

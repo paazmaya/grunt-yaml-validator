@@ -34,9 +34,9 @@
   },
   "devDependencies": {
     "blanket": "~1.2",
-    "eslint-config-paazmaya": "^5.0.0",
+    "eslint-config-paazmaya": "^5.1.0",
     "grunt": "~1.0.3",
-    "eslint": "~5.8",
+    "eslint": "~5.10",
     "grunt-mocha-test": "~0.13",
     "jit-grunt": "~0.10",
     "mocha": "~5.2",

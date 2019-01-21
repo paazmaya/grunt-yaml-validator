@@ -238,8 +238,9 @@ Please note that any features or changes will not be merged without working unit
 
 ## Release History
 
-* `v0.11.0` (2017-07)
-  - Minimum Node.js version lifted from `4.2.0` to `6.9.5`
+* `v1.0.0` (2019-01-22)
+  - Minimum Node.js version lifted from `4.2.0` to `8.11.1`
+  - Updated `yaml-validator` to `v2.0.0`
 * `v0.10.0` (2016-08-10)
   - Dependencies are sure :tophat: up to date, among `yaml-validator` version `0.2.0`
   - Moved testing from Drone.io to [Semaphore](https://semaphoreci.com/paazmaya/grunt-yaml-validator)

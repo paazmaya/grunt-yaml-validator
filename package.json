@@ -39,7 +39,7 @@
     "eslint": "5.15.1",
     "grunt-mocha-test": "0.13.3",
     "jit-grunt": "0.10.0",
-    "mocha": "5.2.0",
+    "mocha": "6.0.2",
     "time-grunt": "2.0.0"
   },
   "peerDependencies": {

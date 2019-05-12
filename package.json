@@ -30,16 +30,16 @@
     "lint": "eslint tasks Gruntfile.js"
   },
   "dependencies": {
-    "yaml-validator": "^2.0.0"
+    "yaml-validator": "^2.1.0"
   },
   "devDependencies": {
     "blanket": "1.2.3",
-    "eslint-config-paazmaya": "5.2.0",
-    "grunt": "1.0.3",
-    "eslint": "5.15.3",
+    "eslint": "5.16.0",
+    "eslint-config-paazmaya": "5.3.0",
+    "grunt": "^1.0.4",
     "grunt-mocha-test": "0.13.3",
     "jit-grunt": "0.10.0",
-    "mocha": "6.0.2",
+    "mocha": "6.1.4",
     "time-grunt": "2.0.0"
   },
   "peerDependencies": {

@@ -3,7 +3,7 @@
 > Validate Yaml files and enforce a given structure
 
 [![Dependency Status](https://david-dm.org/paazmaya/grunt-yaml-validator/status.svg)](https://david-dm.org/paazmaya/grunt-yaml-validator)
-[![Build Status](https://semaphoreci.com/api/v1/paazmaya/grunt-yaml-validator/branches/master/shields_badge.svg)](https://semaphoreci.com/paazmaya/grunt-yaml-validator)
+[![Build Status](https://semaphoreci.com/api/v1/paazmaya/grunt-yaml-validator/branches/master/badge.svg)](https://semaphoreci.com/paazmaya/grunt-yaml-validator)
 [![Built with Grunt](http://img.shields.io/badge/Grunt-1.0-blue.svg?style=flat-square)](http://gruntjs.com/)
 
 [Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)

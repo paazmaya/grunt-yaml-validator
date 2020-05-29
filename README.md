@@ -2,10 +2,9 @@
 
 > Validate Yaml files and enforce a given structure
 
-[![Dependency Status](https://img.shields.io/david/paazmaya/grunt-yaml-validator.svg?style=flat-square)](https://david-dm.org/paazmaya/grunt-yaml-validator)
+[![Dependency Status](https://david-dm.org/paazmaya/grunt-yaml-validator/status.svg)](https://david-dm.org/paazmaya/grunt-yaml-validator)
 [![Build Status](https://semaphoreci.com/api/v1/paazmaya/grunt-yaml-validator/branches/master/shields_badge.svg)](https://semaphoreci.com/paazmaya/grunt-yaml-validator)
 [![Built with Grunt](http://img.shields.io/badge/Grunt-1.0-blue.svg?style=flat-square)](http://gruntjs.com/)
-[![Analytics](https://ga-beacon.appspot.com/UA-2643697-15/grunt-yaml-validator/index?flat)](https://github.com/igrigorik/ga-beacon)
 
 [Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)
 and the structure defined via task configuration is enforced with
@@ -14,7 +13,7 @@ and the structure defined via task configuration is enforced with
 
 ## Getting Started
 
-This plugin requires [Grunt](http://gruntjs.com/) `>=0.4.0` and [Node.js](https://nodejs.org/en/) minimum of `8.11.1`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
+This plugin requires [Grunt](http://gruntjs.com/) `~1.1` and [Node.js](https://nodejs.org/en/) minimum of `10.13.0`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
 [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
@@ -238,6 +237,9 @@ Please note that any features or changes will not be merged without working unit
 
 ## Release History
 
+* `v2.0.0` (2020-05-29)
+  - Minimum Node.js version lifted from `8.11.1` to `10.13.0`
+  - Updated `yaml-validator` to `v2.2.0`
 * `v1.0.0` (2019-01-22)
   - Minimum Node.js version lifted from `4.2.0` to `8.11.1`
   - Updated `yaml-validator` to `v2.0.0`

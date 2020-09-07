@@ -3,7 +3,8 @@
 > Validate Yaml files and enforce a given structure
 
 [![Dependency Status](https://david-dm.org/paazmaya/grunt-yaml-validator/status.svg)](https://david-dm.org/paazmaya/grunt-yaml-validator)
-[![Build Status](https://semaphoreci.com/api/v1/paazmaya/grunt-yaml-validator/branches/master/badge.svg)](https://semaphoreci.com/paazmaya/grunt-yaml-validator)
+[![Ubuntu Build Status](https://paazmaya.semaphoreci.com/badges/grunt-yaml-validator.svg)](https://paazmaya.semaphoreci.com/projects/grunt-yaml-validator)
+
 [![Built with Grunt](http://img.shields.io/badge/Grunt-1.0-blue.svg?style=flat-square)](http://gruntjs.com/)
 
 [Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)
@@ -237,6 +238,8 @@ Please note that any features or changes will not be merged without working unit
 
 ## Release History
 
+* `vx.0.0` (2020-x)
+  - Migrated to version 2 of Semaphore CI
 * `v2.0.0` (2020-05-29)
   - Minimum Node.js version lifted from `8.11.1` to `10.13.0`
   - Updated `yaml-validator` to `v2.2.0`
@@ -245,7 +248,7 @@ Please note that any features or changes will not be merged without working unit
   - Updated `yaml-validator` to `v2.0.0`
 * `v0.10.0` (2016-08-10)
   - Dependencies are sure :tophat: up to date, among `yaml-validator` version `0.2.0`
-  - Moved testing from Drone.io to [Semaphore](https://semaphoreci.com/paazmaya/grunt-yaml-validator)
+  - Moved testing from Drone.io to [Semaphore](https://paazmaya.semaphoreci.com/projects/grunt-yaml-validator)
   - Grunt `v1.0.0` is now the minimum
   - Use shared ESLint configuration and ESLint directly without the Grunt.js plugin
 * `v0.9.0` (2016-02-22)

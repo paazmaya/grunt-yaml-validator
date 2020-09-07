@@ -4,7 +4,6 @@
 
 [![Dependency Status](https://david-dm.org/paazmaya/grunt-yaml-validator/status.svg)](https://david-dm.org/paazmaya/grunt-yaml-validator)
 [![Ubuntu Build Status](https://paazmaya.semaphoreci.com/badges/grunt-yaml-validator.svg)](https://paazmaya.semaphoreci.com/projects/grunt-yaml-validator)
-
 [![Built with Grunt](http://img.shields.io/badge/Grunt-1.0-blue.svg?style=flat-square)](http://gruntjs.com/)
 
 [Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)

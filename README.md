@@ -13,7 +13,7 @@ and the structure defined via task configuration is enforced with
 
 ## Getting Started
 
-This plugin requires [Grunt](http://gruntjs.com/) `~1.1` and [Node.js](https://nodejs.org/en/) minimum of `10.13.0`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
+This plugin requires [Grunt](http://gruntjs.com/) `~1.1` and [Node.js](https://nodejs.org/en/) minimum of `14.15.0`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
 [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
@@ -237,8 +237,9 @@ Please note that any features or changes will not be merged without working unit
 
 ## Release History
 
-* `vx.0.0` (2020-x)
+* `vx.0.0` (2021-x)
   - Migrated to version 2 of Semaphore CI
+  - Minimum Node.js version lifted from `10.13.0` to `14.15.0`
 * `v2.0.0` (2020-05-29)
   - Minimum Node.js version lifted from `8.11.1` to `10.13.0`
   - Updated `yaml-validator` to `v2.2.0`

@@ -2,7 +2,7 @@
 
 > Validate Yaml files and enforce a given structure
 
-[![Dependency Status](https://david-dm.org/paazmaya/grunt-yaml-validator/status.svg)](https://david-dm.org/paazmaya/grunt-yaml-validator)
+
 [![Ubuntu Build Status](https://paazmaya.semaphoreci.com/badges/grunt-yaml-validator.svg)](https://paazmaya.semaphoreci.com/projects/grunt-yaml-validator)
 [![Built with Grunt](http://img.shields.io/badge/Grunt-1.0-blue.svg?style=flat-square)](http://gruntjs.com/)
 

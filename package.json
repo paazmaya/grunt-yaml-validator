@@ -9,6 +9,7 @@
     "url": "https://paazmaya.fi"
   },
   "main": "tasks/yaml_validator.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git://github.com/paazmaya/grunt-yaml-validator.git"
@@ -34,8 +35,8 @@
   },
   "devDependencies": {
     "blanket": "1.2.3",
-    "eslint": "7.32.0",
-    "eslint-config-paazmaya": "7.2.0",
+    "eslint": "8.28.0",
+    "eslint-config-paazmaya": "9.0.0",
     "grunt": "1.5.3",
     "grunt-mocha-test": "0.13.3",
     "jit-grunt": "0.10.0",

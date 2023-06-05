@@ -6,7 +6,7 @@ It follows the guidance from https://keepachangelog.com/en/1.0.0/.
 ## Unreleased
 
 
-## `vx.0.0` (2021-x)
+## `v3.0.0` (2023-06-06)
 
 - Migrated to version 2 of Semaphore CI
 - Minimum supported Node.js version lifted from `10.13.0` to `14.15.0`

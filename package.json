@@ -39,7 +39,7 @@
     "grunt": "1.6.1",
     "grunt-mocha-test": "0.13.3",
     "jit-grunt": "0.10.0",
-    "mocha": "10.2.0",
+    "mocha": "10.8.2",
     "time-grunt": "2.0.0"
   },
   "peerDependencies": {

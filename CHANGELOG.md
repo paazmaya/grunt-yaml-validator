@@ -18,6 +18,7 @@ It follows the guidance from https://keepachangelog.com/en/1.0.0/.
 - Updated `yaml-validator` to `v2.2.0`
 
 ## `v1.0.0` (2019-01-22)
+
 - Minimum Node.js version lifted from `4.2.0` to `8.11.1`
 - Updated `yaml-validator` to `v2.0.0`
 

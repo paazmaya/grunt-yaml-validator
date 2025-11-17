@@ -2,7 +2,6 @@
 
 > Validate Yaml files and enforce a given structure
 
-
 [![Ubuntu Build Status](https://paazmaya.semaphoreci.com/badges/grunt-yaml-validator.svg)](https://paazmaya.semaphoreci.com/projects/grunt-yaml-validator)
 [![Built with Grunt](http://img.shields.io/badge/Grunt-1.0-blue.svg?style=flat-square)](http://gruntjs.com/)
 
@@ -29,7 +28,7 @@ Once the plugin has been installed, it may be enabled inside your
 `Gruntfile.js` with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-yaml-validator');
+grunt.loadNpmTasks("grunt-yaml-validator");
 ```
 
 In case you are using an automated loader, such as [`jit-grunt`](https://github.com/shootaroo/jit-grunt),
@@ -78,7 +77,6 @@ Default value: `false`
 In case the value is not `false`, the given string will be used as log file where all the
 task output is written.
 
-
 #### options.structure
 
 Type: `object`
@@ -86,7 +84,6 @@ Type: `object`
 Default value: `false`
 
 The most complex style of checking validity.
-
 
 #### options.yaml
 
@@ -101,7 +98,6 @@ will be run after the one implemented in this plugin.
 The callback get called with two parameters, of which the first is the error in question,
 while the second is the file path of the given Yaml file.
 
-
 #### options.writeJson
 
 Type: `boolean`
@@ -111,7 +107,6 @@ Default: `false`
 Write the given Yaml file as pretty printed JSON in the same path, just by changing the file extension to `json`.
 
 Please note that any existing JSON files will be cruelly overwritten.
-
 
 ### Usage Examples
 
@@ -123,9 +118,9 @@ By using the default option values, only the validity of the configured Yaml fil
 grunt.initConfig({
   yaml_validator: {
     defaults: {
-      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
-    }
-  }
+      src: ["configuration/*.yml", "other/important/*_stuff.yml"],
+    },
+  },
 });
 ```
 
@@ -138,11 +133,11 @@ grunt.initConfig({
   yaml_validator: {
     logged: {
       options: {
-        log: 'yaml-validator.log'
+        log: "yaml-validator.log",
       },
-      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
-    }
-  }
+      src: ["configuration/*.yml", "other/important/*_stuff.yml"],
+    },
+  },
 });
 ```
 
@@ -162,26 +157,24 @@ grunt.initConfig({
       options: {
         structure: {
           school: {
-            description: 'string',
-            code: 'number',
+            description: "string",
+            code: "number",
             principal: {
-              name: 'string'
+              name: "string",
             },
             classRooms: [
               {
-                name: 'string',
-                id: 'number'
-              }
+                name: "string",
+                id: "number",
+              },
             ],
-            teachers: [
-              'string'
-            ]
-          }
-        }
+            teachers: ["string"],
+          },
+        },
       },
-      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
-    }
-  }
+      src: ["configuration/*.yml", "other/important/*_stuff.yml"],
+    },
+  },
 });
 ```
 
@@ -196,13 +189,13 @@ grunt.initConfig({
       options: {
         yaml: {
           onWarning: function (error, filepath) {
-            console.log(filepath + ' has error: ' + error);
-          }
-        }
+            console.log(filepath + " has error: " + error);
+          },
+        },
       },
-      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
-    }
-  }
+      src: ["configuration/*.yml", "other/important/*_stuff.yml"],
+    },
+  },
 });
 ```
 
@@ -216,11 +209,11 @@ grunt.initConfig({
   yaml_validator: {
     custom: {
       options: {
-        writeJson: true
+        writeJson: true,
       },
-      src: ['configuration/*.yml', 'other/important/*_stuff.yml']
-    }
-  }
+      src: ["configuration/*.yml", "other/important/*_stuff.yml"],
+    },
+  },
 });
 ```
 

@@ -39,7 +39,7 @@
     "jit-grunt": "0.10.0",
     "mocha": "11.7.5",
     "time-grunt": "2.0.0",
-    "oxlint": "0.7.2"
+    "oxlint": "1.62.0"
   },
   "peerDependencies": {
     "grunt": "^1.1.0"

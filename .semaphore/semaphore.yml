@@ -14,9 +14,9 @@ blocks:
         commands:
           - checkout
           - sem-version node 24
-          - cache restore
-          - npm install
-          - cache store
+          - cache restore node-modules-$(checksum package-lock.json)
+          - npm ci --ignore-scripts
+          - cache store node-modules-$(checksum package-lock.json) node_modules
       jobs:
         - name: Lint
           commands:

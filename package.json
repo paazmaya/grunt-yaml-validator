@@ -11,16 +11,14 @@
   "main": "tasks/yaml_validator.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/paazmaya/grunt-yaml-validator.git"
+    "url": "git+https://github.com/paazmaya/grunt-yaml-validator.git"
   },
   "bugs": {
     "url": "https://github.com/paazmaya/grunt-yaml-validator/issues"
   },
   "license": "MIT",
   "files": [
-    "LICENSE",
-    "tasks",
-    "README.md"
+    "tasks"
   ],
   "engines": {
     "node": ">=24.12.0"

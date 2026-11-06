@@ -4,3 +4,4 @@ tmp
 yaml-validator.log
 results.txt
 
+.DS_Store

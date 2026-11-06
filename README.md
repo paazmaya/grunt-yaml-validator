@@ -3,20 +3,20 @@
 > Validate Yaml files and enforce a given structure
 
 [![Ubuntu Build Status](https://paazmaya.semaphoreci.com/badges/grunt-yaml-validator.svg)](https://paazmaya.semaphoreci.com/projects/grunt-yaml-validator)
-[![Built with Grunt](http://img.shields.io/badge/Grunt-1.0-blue.svg?style=flat-square)](http://gruntjs.com/)
+[![Built with Grunt](https://img.shields.io/badge/Grunt-1.0-blue.svg?style=flat-square)](https://gruntjs.com/)
 
-[Yaml](http://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)
+[Yaml](https://yaml.org/) files are parsed via [`js-yaml`](https://github.com/nodeca/js-yaml)
 and the structure defined via task configuration is enforced with
 [`check-type`](https://github.com/alistairjcbrown/check-type), that are both used via
 [`yaml-validator`](https://www.npmjs.com/package/yaml-validator).
 
 ## Getting Started
 
-This plugin requires [Grunt](http://gruntjs.com/) `~1.1` and [Node.js](https://nodejs.org/en/) minimum of `24.12.0`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
+This plugin requires [Grunt](https://gruntjs.com/) `~1.1` and [Node.js](https://nodejs.org/en/) minimum of `24.12.0`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
-[Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
-create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and
+If you haven't used [Grunt](https://gruntjs.com/) before, be sure to check out the
+[Getting Started](https://gruntjs.com/getting-started) guide, as it explains how to
+create a [Gruntfile](https://gruntjs.com/sample-gruntfile) as well as install and
 use Grunt plugins. Once you're familiar with that process, you may install this
 plugin with this command:
 
@@ -36,11 +36,11 @@ the above line is not needed.
 
 ## The "yaml_validator" task
 
-Please note that this project is a [multi task plugin](http://gruntjs.com/creating-tasks#multi-tasks),
+Please note that this project is a [multi task plugin](https://gruntjs.com/creating-tasks#multi-tasks),
 so pay special attention for configuring it.
 
 Files to be checked with this plugin, should be defined
-[via `src` property](http://gruntjs.com/api/inside-tasks#this.filessrc).
+[via `src` property](https://gruntjs.com/api/inside-tasks#this.filessrc).
 
 ### Overview
 
@@ -219,11 +219,11 @@ grunt.initConfig({
 
 ## Contributing
 
-["A Beginner's Guide to Open Source: The Best Advice for Making your First Contribution"](http://www.erikaheidi.com/blog/a-beginners-guide-to-open-source-the-best-advice-for-making-your-first-contribution/).
+["A Beginner's Guide to Open Source: The Best Advice for Making your First Contribution"](https://www.erikaheidi.com/blog/a-beginners-guide-to-open-source-the-best-advice-for-making-your-first-contribution/).
 
 [Also there is a blog post about "45 Github Issues Dos and Don’ts"](https://davidwalsh.name/45-github-issues-dos-donts).
 
-Linting is done with [ESLint](http://eslint.org) and can be executed with `npm run lint`.
+Linting is done with [Oxlint](https://oxc.rs/docs/guide/usage/linter.html) and can be executed with `npm run lint`.
 There should be no errors appearing after any JavaScript file changes.
 
 Please note that any features or changes will not be merged without working unit tests.
